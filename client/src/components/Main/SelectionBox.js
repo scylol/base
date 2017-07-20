@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Box = (props) => {
+const SelectionBox = (props) => {
   return (
       <li style={styles.liStyles}>{props.text}</li>
   );
@@ -19,4 +19,4 @@ const styles = {
   }
 }
 
-export default Box;
+export default SelectionBox;

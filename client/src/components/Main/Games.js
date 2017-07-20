@@ -1,12 +1,12 @@
 import React from 'react';
-import Box from './Box';
+import SelectionBox from './SelectionBox';
 
 const Games = () => {
   const games = ['HearthStone', 'DoTA', 'Minecraft', 'StreetFighter', 'GTA'];
 
   return(
-    <ul>
-      {games.map(item => <li>{item}</li>)}
+    <ul className="Games" style={{ display: 'flex', listStyle: 'none' }}>
+      {games.map(item => <li style={{ flex: 1 }}>{item}</li>)}
     </ul>
   );
 }
