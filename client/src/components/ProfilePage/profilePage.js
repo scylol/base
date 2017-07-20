@@ -3,6 +3,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./profilePage.css";
 
+
 export default class ProfilePage extends Component {
   constructor(props) {
     super(props);
