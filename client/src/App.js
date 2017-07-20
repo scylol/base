@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Selection from '../src/components/Main/Selection';
 import Games from '../src/components/Main/Games';
+import ProfilePage from '../src/components/ProfilePage/profilePage';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
         <Selection title={'Region'}/>
         <Selection title={'Platform'}/>
         <Games />
+        <ProfilePage />
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectionBox from './SelectionBox';
+
 
 const Games = () => {
   const games = ['HearthStone', 'DoTA', 'Minecraft', 'StreetFighter', 'GTA'];
