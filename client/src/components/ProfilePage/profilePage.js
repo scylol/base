@@ -43,8 +43,13 @@ export default class ProfilePage extends Component {
     console.log(this.state)
   }
    setSlider6Value(value) {
+     console.log(arguments);
      this.setState({slider6: value});
     console.log(this.state)
+  }
+
+  globalsetSliders(value,sliderName) {
+    this.setState({sliderName: value});
   }
 
   render() {
