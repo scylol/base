@@ -11,10 +11,7 @@ require('dotenv').config();
 const {DATABASE_URL, PORT} = process.env;
 const {User} = require('./models');
 
-mongoose.connect(DATABASE_URL,function(err){
-  if(err) console.log('Something wrong with mongoose connection');
-  console.log('MLab connected!');
-});
+
 
 
 let secret = {
@@ -111,61 +108,40 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 
 
 let server;
-function runServer(port=3001) {
-  console.log(port);
-  
-  return new Promise((resolve, reject) => {
-    server = app.listen(port, () => {
-      resolve();
-    }).on('error', reject);
-  });
-}
 
-function closeServer() {
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  console.log(databaseUrl);
+  console.log(port);
   return new Promise((resolve, reject) => {
-    server.close(err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
-      resolve();
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
     });
   });
 }
 
-
-// function runServer(databaseUrl=DATABASE_URL, port=PORT) {
-//   console.log(databaseUrl);
-//   console.log(port);
-//   return new Promise((resolve, reject) => {
-//     mongoose.connect(databaseUrl, err => {
-//       if (err) {
-//         return reject(err);
-//       }
-//       server = app.listen(port, () => {
-//         console.log(`Your app is listening on port ${port}`);
-//         resolve();
-//       })
-//       .on('error', err => {
-//         mongoose.disconnect();
-//         reject(err);
-//       });
-//     });
-//   });
-// }
-
-// function closeServer() {
-//   return mongoose.disconnect().then(() => {
-//     return new Promise((resolve, reject) => {
-//       console.log('Closing server');
-//       server.close(err => {
-//         if (err) {
-//           return reject(err);
-//         }
-//         resolve();
-//       });
-//     });
-//   });
-// }
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
 
 if (require.main === module) {
   runServer();
