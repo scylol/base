@@ -3,7 +3,8 @@ import {FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_ERROR} from '../actio
 const initialState = {
   currentUser: null,
   loading: false,
-  error: null
+  error: null,
+  googleId: null
 };
 
 export default function reducer(state=initialState, action) {

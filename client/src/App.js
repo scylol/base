@@ -23,13 +23,7 @@ class App extends Component {
             return <LoginPage />;
         }
     return (
-      // <div className="App">
-      //   <Selection title={'Region'}/>
-      //   <Selection title={'Platform'}/>
-      //   <Games />
-      //   <ProfilePage />
-      // </div>
-      <Router>
+       <Router>
         <div className='app'>
         <Route exact path ='/' component={ProfilePage} />
         <Route exact path ='/profile' component={ProfilePage} />
