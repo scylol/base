@@ -11,13 +11,14 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
   res.sendFile(index);
 });
 
-
 let server;
-function runServer(port=3001) {
+function runServer(port = 3001) {
   return new Promise((resolve, reject) => {
-    server = app.listen(port, () => {
-      resolve();
-    }).on('error', reject);
+    server = app
+      .listen(port, () => {
+        resolve();
+      })
+      .on('error', reject);
   });
 }
 
@@ -37,5 +38,7 @@ if (require.main === module) {
 }
 
 module.exports = {
-  app, runServer, closeServer
+  app,
+  runServer,
+  closeServer
 };
