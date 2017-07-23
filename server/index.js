@@ -106,8 +106,8 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
   res.sendFile(index);
 });
 
-
 let server;
+
 
 function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   console.log(databaseUrl);
@@ -148,7 +148,9 @@ if (require.main === module) {
 }
 
 module.exports = {
-  app, runServer, closeServer
+  app,
+  runServer,
+  closeServer
 };
 
 
