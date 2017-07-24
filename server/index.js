@@ -29,9 +29,31 @@ const app = express();
 app.use(passport.initialize());
 app.use(bodyParser.json());
 
+//database endpoints
 app.get('/api/me', passport.authenticate('bearer', {session: false}),(req, res) => {
   console.log(req.user);
   return res.json(req.user);
+});
+
+app.put('/api/users/:googleId', passport.authenticate('bearer', {session: false}), (req, res) => {
+  User
+    .findOneAndUpdate({googleId: req.params.googleId}, 
+    {$set:{ slider1:req.body.slider1, 
+      slider2: req.body.slider2,
+      slider3: req.body.slider3,
+      slider4: req.body.slider4,
+      slider5: req.body.slider5,
+      slider6: req.body.slider6,
+    }}
+      , {new: true})
+    .then(results => {
+      console.log('result from put' + results);
+      res.json(results).end();
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json({error: 'Put request fail'});
+    });
 });
 
 //Google Oath
