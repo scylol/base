@@ -64,6 +64,7 @@ passport.use(
       callbackURL: '/api/auth/google/callback'
     },
     (accessToken, refreshToken, profile, cb) => {
+      console.log('profile',profile);
       User.findOne({googleId: profile.id}, function(err, user){
         console.log('inside passport', accessToken);
         if(!user) {
