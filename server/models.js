@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
   slider3: {type: Number, default: 50},
   slider4: {type: Number, default: 50},
   slider5: {type: Number, default: 50},
-  slider6: {type: Number, default: 50}
+  slider6: {type: Number, default: 50},
+  image: {type: String}
 });
 
 userSchema.methods.apiRepr = function() {

@@ -1,24 +1,72 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat|Roboto+Condensed");
+* {
+  transition: ease-in-out .2s; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+.uppercase {
+  text-transform: uppercase; }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #28303f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 275px;
+  height: 100vh; }
+  .sidebar h1 {
+    margin-left: 25px;
+    margin-top: 25px;
+    font-size: 56px;
+    border-bottom: 5px solid #eb2b44; }
+  .sidebar a {
+    align-self: center; }
+  .sidebar .logout {
+    width: 150px;
+    align-self: center;
+    margin-bottom: 25px;
+    background-color: #eb2b44;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold; }
+  .sidebar .profile-container {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 25px; }
+    .sidebar .profile-container img {
+      width: 50px;
+      margin-right: 25px;
+      margin-left: 25px; }
+
+.login {
+  margin-left: 25%; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #151b27; }
+  body h1 {
+    font-family: 'Montserrat', sans-serif; }
+  body p, body a {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-decoration: none;
+    font-size: 14px; }
+  body a {
+    font-weight: bold;
+    letter-spacing: 1px; }
+  body div {
+    box-sizing: border-box !important; }
+  body .hidden {
+    display: none !important; }
+  body #root {
+    width: 100%; }

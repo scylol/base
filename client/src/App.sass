@@ -1,0 +1,74 @@
+
+*
+  transition: ease-in-out .2s
+=desktop()
+  @media screen and (min-width: 990px)
+    @content
+=ultra()
+  @media screen and (min-width: 1921px)
+    @content
+=mobile()
+  @media screen and (max-width: 989px)
+    @content
+=laptop()
+  @media screen and (min-width: 990px) and (max-width: 1412px)
+    @content
+=tablet()
+  @media screen and (max-width: 990px) and (min-width: 550px)
+    @content
+
+// Color Variables
+
+$green: #1abc9c
+$tan: #e0ddd7
+$cyan: #21ADE4
+$gray: #414042
+
+
+// Styling Classes
+
+.uppercase
+  text-transform: uppercase
+$ff: 'ff-good-headline-web-pro-con'
+
+
+// CSS imports
+
+@import sidebar
+@import loginPage
+
+
+//font import
+
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat|Roboto+Condensed')
+
+
+
+// Global Styles
+
+body
+  font-family: 'Montserrat', sans-serif
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  color: white
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #151b27
+  h1
+    font-family: 'Montserrat', sans-serif
+  p, a
+    font-family: 'Montserrat', sans-serif
+    color: white
+    text-decoration: none
+    font-size: 14px
+  a
+    font-weight: bold
+    letter-spacing: 1px
+  div
+    box-sizing: border-box !important
+  .hidden
+    display: none !important
+  #root
+    width: 100%
