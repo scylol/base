@@ -14,6 +14,11 @@ const initialState = {
     googleId: '',
     photo: null
   },
+  userSelections: {
+    platform: '',
+    region: '',
+    game: ''
+  },
   loading: false,
   error: null
 };
