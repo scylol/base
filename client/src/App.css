@@ -5,33 +5,65 @@
 .uppercase {
   text-transform: uppercase; }
 
-@font-face {
-  font-family: 'Gotham Black';
-  src: url("./fonts/Gotham Font Family/Gotham-Black.ttf"); }
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #28303f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 275px;
+  height: 100vh; }
+  .sidebar h1 {
+    margin-left: 25px;
+    margin-top: 25px;
+    font-size: 56px;
+    border-bottom: 5px solid #eb2b44; }
+  .sidebar a {
+    align-self: center; }
+  .sidebar .logout {
+    width: 150px;
+    align-self: center;
+    margin-bottom: 25px;
+    background-color: #eb2b44;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold; }
+  .sidebar .profile-container {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 25px; }
+    .sidebar .profile-container img {
+      width: 50px;
+      margin-right: 25px;
+      margin-left: 25px; }
 
-@font-face {
-  font-family: 'Gotham Book';
-  src: url("./fonts/Gotham Font Family/Gotham-Book.ttf"); }
+.login {
+  margin-left: 25%; }
 
 body {
-  font-family: 'Gotham Book', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   color: white;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-color: #151b27; }
   body h1 {
-    font-family: 'Gotham Black', sans-serif; }
+    font-family: 'Montserrat', sans-serif; }
   body p, body a {
-    font-family: 'Gotham Book', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
-    text-decoration: none; }
+    text-decoration: none;
+    font-size: 14px; }
   body a {
     font-weight: bold;
-    letter-spacing: 1px;
-    color: black; }
+    letter-spacing: 1px; }
   body div {
     box-sizing: border-box !important; }
   body .hidden {

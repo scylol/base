@@ -29,7 +29,6 @@ app.get(
   '/api/me',
   passport.authenticate('bearer', { session: false }),
   (req, res) => {
-    console.log(req.user);
     return res.json(req.user);
   }
 );
@@ -44,14 +43,13 @@ passport.use(
     },
     (accessToken, refreshToken, profile, cb) => {
       User.findOne({ googleId: profile.id }, function(err, user) {
-        console.log('inside passport', accessToken);
         if (!user) {
-          console.log('inside if passport', accessToken);
           User.create(
             {
               googleId: profile.id,
               name: profile.displayName,
-              accessToken: accessToken
+              accessToken: accessToken,
+              image: profile.photos[0].value
             },
             function(err, user) {
               return cb(null, user);
@@ -78,7 +76,6 @@ passport.use(
       if (!user) {
         return done(null, false);
       }
-      console.log('UserToken', user);
       return done(null, user);
     });
   })
@@ -96,7 +93,6 @@ app.get(
     session: false
   }),
   (req, res) => {
-    console.log('req.user', req.user);
     res.cookie('accessToken', req.user.accessToken, { expires: 0 });
     res.redirect('/');
   }
@@ -119,8 +115,6 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
-  console.log(databaseUrl);
-  console.log(port);
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
       if (err) {

@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
   googleId: {type: String, required: true},
   name: {type: String, required: true},
-  accessToken: {type: String, required: true}
+  accessToken: {type: String, required: true},
+  image: {type: String}
 });
 
 userSchema.methods.apiRepr = function() {

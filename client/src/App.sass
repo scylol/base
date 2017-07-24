@@ -34,25 +34,20 @@ $ff: 'ff-good-headline-web-pro-con'
 
 // CSS imports
 
-
+@import sidebar
+@import loginPage
 
 
 //font import
 
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat|Roboto+Condensed')
 
-@font-face
-  font-family: 'Gotham Black'
-  src: url('./fonts/Gotham Font Family/Gotham-Black.ttf')
-@font-face
-  font-family: 'Gotham Book'
-  src: url('./fonts/Gotham Font Family/Gotham-Book.ttf')
 
 
 // Global Styles
 
 body
-  font-family: 'Gotham Book', sans-serif
+  font-family: 'Montserrat', sans-serif
   padding: 0
   margin: 0
   box-sizing: border-box
@@ -60,16 +55,17 @@ body
   display: flex
   justify-content: center
   align-items: center
+  background-color: #151b27
   h1
-    font-family: 'Gotham Black', sans-serif
+    font-family: 'Montserrat', sans-serif
   p, a
-    font-family: 'Gotham Book', sans-serif
+    font-family: 'Montserrat', sans-serif
     color: white
     text-decoration: none
+    font-size: 14px
   a
     font-weight: bold
     letter-spacing: 1px
-    color: black
   div
     box-sizing: border-box !important
   .hidden
