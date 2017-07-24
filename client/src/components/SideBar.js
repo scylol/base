@@ -30,6 +30,9 @@ class SideBar extends Component {
     return (
       <div className="sidebar">
         <h1>Base</h1>
+        <a href="">
+          <button>Create Lobby</button>
+        </a>
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
           <p>
