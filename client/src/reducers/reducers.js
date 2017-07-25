@@ -2,7 +2,7 @@ import {
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
-  UPDATE_SLIDER_1
+  UPDATE_SLIDERS
 } from '../actions/actions';
 import {
   LOGOUT_REQUEST,
@@ -64,7 +64,7 @@ const name = (state = initialState, action) => {
       };
     case LOGOUT_FAILURE:
       return { ...state, loading: false, error: true };
-    case UPDATE_SLIDER_1:
+    case UPDATE_SLIDERS:
       if (action.sliderName === 'slider1') {
         return { ...state, slider1: action.value };
       } else if (action.sliderName === 'slider2') {

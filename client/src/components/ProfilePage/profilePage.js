@@ -20,6 +20,8 @@ class ProfilePage extends Component {
     this.updateUserProfile = this.updateUserProfile.bind(this);
   }
 
+ 
+
   setSlider1Value(value) {
     this.props.dispatch(updateSliders(value, "slider1"));
   }
