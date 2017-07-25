@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import LobbyModal from './Modal';
 
-export default function Title () {
+export default class Title extends Component {
+  constructor(props) {
+    super(props);
+  }
+  showModal = () => {
+      alert('Yolo');
+  }
+  render() {
+
   return (
-    <h3 style={{ width: 400, marginLeft: 20 }}>LF Arthas Farm</h3>
+    <div>
+   <a href="#"><h3 style={{ width: 400, marginLeft: 20 }}>Arthas Farm</h3></a>
+   </div>
   );
+  }
 }
 

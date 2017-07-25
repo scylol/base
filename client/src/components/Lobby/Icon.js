@@ -1,8 +1,8 @@
 import React from 'react';
+import profile from '../../images/profile-placeholder.jpg';
 
 export default function Icon () {
   return (
-    <img className='icon' src="https://image.flaticon.com/icons/svg/118/118781.svg" style={{ height: 50, marginLeft: 20, marginRight: 20 }}></img>
-    //<img className='icon' src="https://image.flaticon.com/icons/svg/118/118781.svg"></img>
+    <img className='profile-icon' src={profile} style={{ height: 50, marginLeft: 20, marginRight: 20 }}></img>
   );
 }

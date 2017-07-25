@@ -4,17 +4,20 @@ import Icon from './Icon';
 import Title from './Title';
 import Room from './Room';
 import Required from './Required';
+import { fetchPlatform } from '../../actions/lobby';
 
 class Lobby extends Component {
   constructor(props) {
     super(props);
   }
+  componentWillMount() {
+  //  this.props.fetchPlatform('XBOX');
+  }
 
   render() {
     return (
-      <div>
-      {/* <div className="lobby" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> */}
-        <h3>WoW - North America - PC</h3>
+      <div className="lobby" style={{ marginLeft: '25%' }}>
+        <h3>{this.props.platform}Hello</h3>
           <Room />
           <Room />
           <Room />
@@ -23,9 +26,12 @@ class Lobby extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    platform: state.platform,
+    region: state.region,
+    game: state.game
+  }
+}
 
-const mapStateToProps = state => {
-
-};
-
-export default connect(mapStateToProps)(Lobby);
+export default connect(mapStateToProps, { fetchPlatform })(Lobby);

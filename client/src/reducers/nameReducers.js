@@ -32,7 +32,7 @@ const initialState = {
   error: null
 };
 
-const name = (state = initialState, action) => {
+export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_USER_REQUEST:
       return { ...state, loading: true, error: null };
@@ -83,4 +83,3 @@ const name = (state = initialState, action) => {
   }
 };
 
-export default name;

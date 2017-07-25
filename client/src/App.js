@@ -21,8 +21,8 @@ class App extends Component {
     return (
       <Router>
         <div className="app">
-          <SideBar name={this.props.currentUser.name} profileImage={this.props.currentUser.photo} />
           <Route exact path="/" component={LoginPage} />
+          <SideBar name={this.props.currentUser.name} profileImage={this.props.currentUser.photo} />
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/games" component={Games} />
           <Route exact path="/lobby" component={Lobby} />
