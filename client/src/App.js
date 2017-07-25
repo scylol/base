@@ -8,6 +8,7 @@ import ProfilePage from './components/ProfilePage/profilePage';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LoginPage from './components/login-page';
 import SideBar from './components/SideBar';
+import Lobby from './components/Lobby/Lobby';
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/games" component={Games} />
+          <Route exact path="/lobby" component={Lobby} />
         </div>
       </Router>
     );
