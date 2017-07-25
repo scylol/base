@@ -8,6 +8,7 @@ import ProfilePage from './components/ProfilePage/profilePage';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LoginPage from './components/login-page';
 import SideBar from './components/SideBar';
+import CreateLobby from './components/createLobby';
 
 class App extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends Component {
       this.props.dispatch(fetchUser(accessToken));
     }
   }
+  
   render() {
     return (
       <Router>
@@ -24,6 +26,7 @@ class App extends Component {
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/games" component={Games} />
+           <Route exact path="/create" component={CreateLobby} />
         </div>
       </Router>
     );

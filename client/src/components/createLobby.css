@@ -1,0 +1,49 @@
+.user-selections {
+    margin: 10px;
+}
+
+.text-section {
+    padding-top: 25px;
+}
+
+.short-description {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-lobby-button {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+textarea {
+    margin-top: 5px;
+    resize: none;
+}
+
+.create-lobby-header {
+    display: flex;
+    justify-content: space-between
+}
+
+.close {
+    color:white;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: -20px;
+    float: right;
+    
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-div {
+    display: flex;
+    justify-content: center;
+}
