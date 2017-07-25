@@ -25,6 +25,10 @@
     font-weight: bold;
 }
 
+.create-lobby-button:hover {
+    cursor: pointer;
+}
+
 textarea {
     margin-top: 5px;
     resize: none;

@@ -13,17 +13,11 @@ export default class CreateLobby extends React.Component {
     };
 
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = "white";
   }
 
   closeModal() {
@@ -37,13 +31,12 @@ export default class CreateLobby extends React.Component {
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
         >
         <span className="close" onClick={this.closeModal}>&times;</span>
         <div className ='create-lobby-header'>
-          <h2 ref={subtitle => (this.subtitle = subtitle)}>Lobby Creator</h2>
+          <h2>Lobby Creator</h2>
         </div>
           <form className="create-lobby">
             <div className="dropdown-section">
