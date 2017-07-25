@@ -2,17 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import "./createLobby.css";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "#151b27"
-  }
-};
+
 
 export default class CreateLobby extends React.Component {
   constructor() {
@@ -45,10 +35,10 @@ export default class CreateLobby extends React.Component {
       <div className='modal-div'>
         <button onClick={this.openModal}>Open Modal</button>
         <Modal
+          className='modal'
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          style={customStyles}
           contentLabel="Example Modal"
         >
         <span className="close" onClick={this.closeModal}>&times;</span>
@@ -84,7 +74,7 @@ export default class CreateLobby extends React.Component {
               </select>
             </div>
             <div className='text-section'>
-            Title: <input className="user-selections" type="text" maxlength="35"/>
+            Title: <input className="user-selections" type="text" maxLength="35"/>
             Start Time: <input className="user-selections" type="text"/>
             Ideal Party Size:<select className="user-selections">
                 <option />

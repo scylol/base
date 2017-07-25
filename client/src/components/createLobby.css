@@ -14,7 +14,15 @@
 
 .create-lobby-button {
     margin-top: 15px;
-    padding: 10px;
+    width: 150px;
+    align-self: center;
+    margin-bottom: 25px;
+    background-color: #eb2b44;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
 }
 
 textarea {
@@ -38,7 +46,7 @@ textarea {
 
 .close:hover,
 .close:focus {
-    color: red;
+    color: #eb2b44;
     text-decoration: none;
     cursor: pointer;
 }
@@ -47,3 +55,16 @@ textarea {
     display: flex;
     justify-content: center;
 }
+
+ .modal {
+     padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #151b27;
+} 
+
