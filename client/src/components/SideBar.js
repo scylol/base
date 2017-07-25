@@ -29,9 +29,11 @@ class SideBar extends Component {
 
     return (
       <div className="sidebar">
+      <Link to={'/'} className="main-text" >
         <h1>Base</h1>
+      </Link>
         <a href="">
-          <button>Create Lobby</button>
+          <button className="logout create-lobby">Create Lobby</button>
         </a>
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />

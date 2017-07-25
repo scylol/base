@@ -37,6 +37,18 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const logoutFailure = () => ({
   type: LOGOUT_FAILURE
 });
+export const updateGameSelection = selection => ({
+  type: 'UPDATE_GAME',
+  selection
+})
+export const updateRegionSelection = selection => ({
+  type: 'UPDATE_REGION',
+  selection
+})
+export const updatePlatformSelection = selection => ({
+  type: 'UPDATE_PLATFORM',
+  selection
+})
 
 export const fetchUser = accessToken => dispatch => {
   dispatch(fetchUserRequest());
