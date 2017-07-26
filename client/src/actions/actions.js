@@ -1,9 +1,9 @@
 /* eslint-disable */
 import * as Cookies from 'js-cookie';
 
-export const UPDATE_SLIDER_1 = ' UPDATE_SLIDER_1';
+export const UPDATE_SLIDERS = ' UPDATE_SLIDERS';
 export const updateSliders = (value, sliderName) => ({
-  type: UPDATE_SLIDER_1,
+  type: UPDATE_SLIDERS,
   value,
   sliderName
 });
@@ -78,8 +78,8 @@ export const fetchUser = accessToken => dispatch => {
 
 export const updateUserProfile = (accessToken) => (dispatch, getState) => {
   const state = getState();
-  console.log(state.score);
-  fetch(`/api/users/${state.googleId.toString()}`, {
+  
+  fetch(`/api/users/${state.currentUser.googleId.toString()}`, {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${accessToken}`,
