@@ -13,7 +13,7 @@ export default class Selection extends Component {
           <SelectionBox text={'XBOX'} />
           <SelectionBox text={'Playstation'} />
           <SelectionBox text={'Mobile'} />
-           <h1><Link to="/games">Trelloish</Link></h1>
+          <h1><Link to="/games">Trelloish</Link></h1>
           <button><Link to="/games">Trelloish</Link></button>
     </ul>
         </div>
