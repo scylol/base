@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUser, logoutUser } from '../actions/actions';
 import * as Cookies from 'js-cookie';
+import CreateLobby from './createLobby';
 
 class SideBar extends Component {
   _userLogButton = () => {
@@ -32,9 +33,8 @@ class SideBar extends Component {
       <Link to={'/'} className="main-text" >
         <h1>Base</h1>
       </Link>
-        <a href="">
-          <button className="logout create-lobby">Create Lobby</button>
-        </a>
+       <CreateLobby />
+
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
           <p>

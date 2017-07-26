@@ -46,6 +46,18 @@
       margin-right: 25px;
       margin-left: 25px; }
 
+.lobby {
+  flexDirection: column;
+  justifyContent: center;
+  alignItems: center;
+  margin-left: 25%; }
+
+.profile-icon {
+  height: 50;
+  width: 50;
+  marginLeft: 20;
+  marginRight: 20; }
+
 .login {
   margin-left: 25%; }
 
