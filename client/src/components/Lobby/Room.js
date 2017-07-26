@@ -18,8 +18,8 @@ class Room extends Component {
               <a href='#'><Modal /></a>
             <Required icon={'Icon'} name={'Mic'}/>
             <Required icon={'7 pm'} name={'Time'}/>
-            <Required icon={'Flag'} name={'Language'}/>
-            <Required icon={this.props.game} name={'Players'}/>
+            <Required icon={'English'} name={'Language'}/>
+            <Required icon={'4/7'} name={'Players'}/>
             <button>Join</button>
       </div>
     );

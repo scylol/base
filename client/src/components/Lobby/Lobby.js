@@ -16,8 +16,8 @@ class Lobby extends Component {
 
   render() {
     return (
-      <div className="lobby" style={{ marginLeft: '25%' }}>
-        <h3>{this.props.platform}Hello</h3>
+      <div className="lobby" >
+        <h3>Wow - NA - PC</h3>
           <Room />
           <Room />
           <Room />

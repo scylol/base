@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import nameReducers from './nameReducers';
+import reducer from './reducers';
 import lobbyReducers from './lobbyReducers';
 
 export default combineReducers({
-  nameReducers,
-  lobbyReducers
+  lobbyReducers,
+  reducer
 });
