@@ -33,7 +33,9 @@ const initialState = {
 };
 
 const name = (state = initialState, action) => {
+  console.log(action.type)
   switch (action.type) {
+    
     case FETCH_USER_REQUEST:
       return { ...state, loading: true, error: null };
     case FETCH_USER_ERROR:

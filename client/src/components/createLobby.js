@@ -27,7 +27,7 @@ export default class CreateLobby extends React.Component {
   render() {
     return (
       <div className='modal-div'>
-        <button onClick={this.openModal}>Open Modal</button>
+        <button className='create-lobby-button' onClick={this.openModal}>Create Lobby</button>
         <Modal
           className='modal'
           isOpen={this.state.modalIsOpen}
