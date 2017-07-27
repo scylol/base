@@ -42,7 +42,7 @@ class SideBar extends Component {
         <Link to={'/'} className="main-text">
           <h1>Base</h1>
         </Link>
-        <button onClick={this._clickHandler.bind(this)} />
+        <CreateLobby />
 
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
