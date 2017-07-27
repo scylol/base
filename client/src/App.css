@@ -58,6 +58,12 @@
   marginLeft: 20;
   marginRight: 20; }
 
+.profile-icon {
+  height: 50;
+  width: 50;
+  marginLeft: 20;
+  marginRight: 20; }
+
 .login {
   margin-left: 25%; }
 
