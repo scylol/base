@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const socketServer = require('socket.io');
+const socket = require('socket.io');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const mongoose = require('mongoose');
@@ -163,10 +163,14 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           mongoose.disconnect();
           reject(err);
         });
-      const io = socketServer(server);
+      const io = socket(server);
 
       io.on('connection', socket => {
         console.log('made socket connection');
+
+        socket.on('create-group', socket => {
+          console.log(socket);
+        });
       });
     });
   });

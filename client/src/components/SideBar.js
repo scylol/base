@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { fetchUser, logoutUser } from '../actions/actions';
 import * as Cookies from 'js-cookie';
 import CreateLobby from './createLobby';
+import io from 'socket.io-client';
+import { socket } from '../App';
+
 
 class SideBar extends Component {
   _userLogButton = () => {
@@ -16,6 +19,12 @@ class SideBar extends Component {
       this.props.dispatch(logoutUser());
     }
   };
+  _clickHandler() {
+    socket.emit('create-group', {
+      currentUser: this.props.currentUser,
+      selection: this.props.selection
+    });
+  }
 
   render() {
     let buttonText = '';
@@ -30,10 +39,10 @@ class SideBar extends Component {
 
     return (
       <div className="sidebar">
-      <Link to={'/'} className="main-text" >
-        <h1>Base</h1>
-      </Link>
-       <CreateLobby />
+        <Link to={'/'} className="main-text">
+          <h1>Base</h1>
+        </Link>
+        <button onClick={this._clickHandler.bind(this)} />
 
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
@@ -53,7 +62,8 @@ class SideBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    selection: state.userSelections
   };
 };
 
