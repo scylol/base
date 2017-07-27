@@ -26,9 +26,9 @@ class App extends Component {
     }
   }
   render() {
-    socket.on('user-joined', data => {
-      console.log(data);
-    });
+    // socket.on('user-joined', data => {
+    //   console.log(data);
+    // });
     return (
       <Router>
         <div className="app">

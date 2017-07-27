@@ -5,14 +5,22 @@ import Title from './Title';
 import Room from './Room';
 import Required from './Required';
 import { fetchPlatform } from '../../actions/lobby';
+import {socket} from '../../App';
 
 class Lobby extends Component {
   constructor(props) {
     super(props);
+    socket.on('user-joined', (data) => {
+      console.log(data);
+    })
+   
   }
-  componentWillMount() {
-  //  this.props.fetchPlatform('XBOX');
-  }
+ 
+  // renderLobbies() {
+  //    socket.on('user-joined', (data) => {
+  //     console.log(data);
+  //   })
+  // }
 
   render() {
     return (
