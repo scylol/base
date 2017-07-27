@@ -5,6 +5,7 @@ import { fetchUser, logoutUser } from '../actions/actions';
 import * as Cookies from 'js-cookie';
 import CreateLobby from './createLobby';
 
+
 class SideBar extends Component {
   _userLogButton = () => {
     const accessToken = Cookies.get('accessToken');
@@ -34,6 +35,9 @@ class SideBar extends Component {
         <h1>Base</h1>
       </Link>
        <CreateLobby />
+       <Link to={'/profile'} className="profile-link" >
+        <h2>My Profile</h2>
+      </Link>
 
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
