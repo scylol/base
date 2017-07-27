@@ -17,7 +17,6 @@ import PlatformSelect from './components/Main/PlatformSelect';
 import RegionSelect from './components/Main/RegionSelect';
 
 export const socket = io.connect('http://localhost:3001');
-console.log(socket);
 
 class App extends Component {
   componentDidMount() {
@@ -27,6 +26,9 @@ class App extends Component {
     }
   }
   render() {
+    socket.on('user-joined', data => {
+      console.log(data);
+    });
     return (
       <Router>
         <div className="app">
@@ -39,6 +41,7 @@ class App extends Component {
           <Route exact path="/platform" component={PlatformSelect} />
           <Route exact path="/games" component={GameSelect} />
           <Route exact path="/region" component={RegionSelect} />
+          <Route exact path="/lobby" component={Lobby} />
         </div>
       </Router>
     );

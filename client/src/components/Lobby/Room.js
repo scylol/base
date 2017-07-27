@@ -6,11 +6,8 @@ import Required from './Required';
 import Modal from './Modal';
 
 class Room extends Component {
-  componentWillMount() {
-    console.log(this.props.game);
-  }
+
   render() {
-    console.log(this);
     return (
       <div className="room" style={styles.roomStyles}>
               <Icon />

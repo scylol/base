@@ -168,8 +168,11 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
       io.on('connection', socket => {
         console.log('made socket connection');
 
-        socket.on('create-group', socket => {
-          console.log(socket);
+        socket.on('create-group', data => {
+          const { platform, game, region } = data.selection;
+          const room = `${platform}-${region}-${game}`;
+          socket.join(room);
+          socket.emit('user-joined', 'A user joined the room')
         });
       });
     });

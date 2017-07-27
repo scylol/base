@@ -23,8 +23,8 @@ class GameSelect extends Component {
         <div className="platforms-container">
           {gameRender}
         </div>
-        <Link to={'/games'}>
-          <button>Next</button>
+        <Link to={'/lobby'}>
+          <button>Find Lobby</button>
         </Link>
       </div>
     );
