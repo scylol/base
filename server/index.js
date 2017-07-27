@@ -1,11 +1,12 @@
 const path = require('path');
 const express = require('express');
-const firebase = require('firebase');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const socketServer = require('socket.io');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('dotenv').config();
 const { DATABASE_URL, PORT } = process.env;
@@ -33,26 +34,34 @@ app.get(
   }
 );
 
-app.put('/api/users/:googleId', passport.authenticate('bearer', {session: false}), (req, res) => {
-  User
-    .findOneAndUpdate({googleId: req.params.googleId}, 
-    {$set:{ slider1:req.body.slider1, 
-      slider2: req.body.slider2,
-      slider3: req.body.slider3,
-      slider4: req.body.slider4,
-      slider5: req.body.slider5,
-      slider6: req.body.slider6,
-    }}
-      , {new: true})
-    .then(results => {
-      console.log('result from put' + results);
-      res.json(results).end();
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json({error: 'Put request fail'});
-    });
-});
+app.put(
+  '/api/users/:googleId',
+  passport.authenticate('bearer', { session: false }),
+  (req, res) => {
+    User.findOneAndUpdate(
+      { googleId: req.params.googleId },
+      {
+        $set: {
+          slider1: req.body.slider1,
+          slider2: req.body.slider2,
+          slider3: req.body.slider3,
+          slider4: req.body.slider4,
+          slider5: req.body.slider5,
+          slider6: req.body.slider6
+        }
+      },
+      { new: true }
+    )
+      .then(results => {
+        console.log('result from put' + results);
+        res.json(results).end();
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({ error: 'Put request fail' });
+      });
+  }
+);
 
 //Google Oath
 passport.use(
@@ -125,6 +134,10 @@ app.get('/api/auth/logout', (req, res) => {
   res.redirect('/');
 });
 
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+});
+
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
 
@@ -150,6 +163,11 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           mongoose.disconnect();
           reject(err);
         });
+      const io = socketServer(server);
+
+      io.on('connection', socket => {
+        console.log('made socket connection');
+      });
     });
   });
 }
