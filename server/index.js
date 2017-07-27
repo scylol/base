@@ -170,7 +170,9 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
         socket.on('create-group', data => {
           const { platform, game, region } = data.selection;
-          socket.join(`${platform}-${region}-${game}`);
+          const room = `${platform}-${region}-${game}`;
+          socket.join(room);
+          socket.emit('user-joined', 'A user joined the room')
         });
       });
     });

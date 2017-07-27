@@ -2,17 +2,23 @@ import React from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import './createLobby.css';
+import { socket } from '../App';
 
 export default class CreateLobby extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      game: '',
+      region: '',
+      platform: '',
+      voice: ''
     };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   openModal() {
@@ -21,6 +27,18 @@ export default class CreateLobby extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+  handleChange(event) {
+    const category = event.target.className.split(' ')[1];
+    let obj = {};
+    obj[category] = event.target.value;
+    this.setState(obj);
+  }
+  _clickHandler() {
+    socket.emit('create-group', {
+      currentUser: this.props.currentUser,
+      selection: this.props.selection
+    });
   }
 
   render() {
@@ -43,27 +61,40 @@ export default class CreateLobby extends React.Component {
           </div>
           <form className="create-lobby">
             <div className="dropdown-section">
-              Game:<select className="user-selections">
+              Game:<select
+                className="user-selections game"
+                onChange={event => this.handleChange(event)}
+              >
                 <option />
+                <option>Dota 2</option>
                 <option>League of Legends</option>
                 <option>Overwatch</option>
-                <option>Hearthstone</option>
-                <option>CSGO</option>
+                <option>Diablo 3</option>
               </select>
-              Region:<select className="user-selections">
+              Region:<select
+                className="user-selections region"
+                onChange={event => this.handleChange(event)}
+              >
                 <option />
-                <option>Americas</option>
+                <option>North America</option>
+                <option>South America</option>
                 <option>Europe</option>
-                <option>Asia</option>
+                <option>OCE</option>
               </select>
-              Platform:<select className="user-selections">
+              Platform:<select
+                className="user-selections platform"
+                onChange={event => this.handleChange(event)}
+              >
                 <option />
                 <option>PC</option>
                 <option>Xbox One</option>
                 <option>PS4</option>
                 <option>Switch</option>
               </select>
-              Voice Required:<select className="user-selections">
+              Voice Required:<select
+                className="user-selections voice"
+                onChange={event => this.handleChange(event)}
+              >
                 <option />
                 <option>Yes</option>
                 <option>No</option>
@@ -91,6 +122,7 @@ export default class CreateLobby extends React.Component {
                 className="create-lobby-button"
                 type="submit"
                 value="Create Lobby"
+                onClick={this._clickHandler.bind(this)}
               />
             </Link>
           </form>

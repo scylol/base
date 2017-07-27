@@ -19,12 +19,7 @@ class SideBar extends Component {
       this.props.dispatch(logoutUser());
     }
   };
-  _clickHandler() {
-    socket.emit('create-group', {
-      currentUser: this.props.currentUser,
-      selection: this.props.selection
-    });
-  }
+
 
   render() {
     let buttonText = '';
