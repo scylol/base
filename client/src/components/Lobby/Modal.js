@@ -58,6 +58,7 @@ class LobbyModal extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
+          contentLabel="Example Modal"
         >
 
           <h2 ref={subtitle => this.subtitle = subtitle}>{title}</h2>
