@@ -34,11 +34,12 @@ class Lobby extends Component {
 
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = ({ userSelections }) => {
+  const { platform, region, game } = userSelections;
   return {
-    platform: 'PC',
-    region: 'NA',
-    game: 'WoW'
+    platform,
+    region,
+    game
   }
 }
 
