@@ -8,16 +8,19 @@ import Modal from './Modal';
 class Room extends Component {
 
   render() {
+    const { mic, time, language, partyNow, partyMax } = this.props;
     return (
       <div className="room" style={styles.roomStyles}>
-              <Icon />
-              <Title />
-              <a href='#'><Modal /></a>
-            <Required icon={'Icon'} name={'Mic'}/>
-            <Required icon={'7 pm'} name={'Time'}/>
-            <Required icon={'English'} name={'Language'}/>
-            <Required icon={'4/7'} name={'Players'}/>
-            <button>Join</button>
+        <Icon />
+        <Title />
+        <Modal />
+
+        <Required name ={mic} title={'Mic'} />
+        <Required name={time} title={'Time'} />
+        <Required name={language} title={'Lang'} />
+        <Required name={`${partyNow}/${partyMax}`} title={'Players'} />
+
+        <button>Join</button>
       </div>
     );
   }
@@ -35,10 +38,12 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
-    platform: state.platform,
-    region: state.region,
-    game: state.game
-  }
+    mic: 'yes',
+    time: '7pm',
+    language: 'EN',
+    partyNow: '0',
+    partyMax: '4'
+  };
 };
 
 export default connect(mapStateToProps)(Room);

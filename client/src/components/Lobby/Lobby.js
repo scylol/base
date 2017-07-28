@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Icon from './Icon';
-import Title from './Title';
+// import Icon from './Icon';
+// import Title from './Title';
 import Room from './Room';
-import Required from './Required';
+// import Required from './Required';
 import { fetchPlatform } from '../../actions/lobby';
 
 class Lobby extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   componentWillMount() {
   //  this.props.fetchPlatform('XBOX');
   }
 
   render() {
+    const { platform, region, game } = this.props;
     return (
       <div className="lobby" >
-        <h3>Wow - NA - PC</h3>
-          <Room />
-          <Room />
+        <h3>{platform} - {region} - {game}</h3>
           <Room />
       </div>
     );
   }
+
 }
 
 function mapStateToProps(state) {
   return {
-    platform: state.platform,
-    region: state.region,
-    game: state.game
+    platform: 'PC',
+    region: 'NA',
+    game: 'WoW'
   }
 }
 
