@@ -10,10 +10,17 @@ export default class CreateLobby extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      game: '',
-      region: '',
-      platform: '',
-      voice: ''
+      selection: {
+        game: '',
+        region: '',
+        platform: '',
+        voice: '',
+        title: '',
+        startTime: '',
+        partySize: '',
+        description: ''
+      }
+     
     };
 
     this.openModal = this.openModal.bind(this);
@@ -36,10 +43,11 @@ export default class CreateLobby extends React.Component {
   }
   _clickHandler() {
     socket.emit('create-group', {
-      currentUser: this.props.currentUser,
-      selection: this.props.selection
+      selection: this.state.selection
     });
   }
+
+
 
   render() {
     return (
@@ -77,8 +85,8 @@ export default class CreateLobby extends React.Component {
               >
                 <option />
                 <option>North America</option>
-                <option>South America</option>
                 <option>Europe</option>
+                <option>South America</option>
                 <option>OCE</option>
               </select>
               Platform:<select
@@ -87,7 +95,7 @@ export default class CreateLobby extends React.Component {
               >
                 <option />
                 <option>PC</option>
-                <option>Xbox One</option>
+                <option>Xbox</option>
                 <option>PS4</option>
                 <option>Switch</option>
               </select>
@@ -101,10 +109,10 @@ export default class CreateLobby extends React.Component {
               </select>
             </div>
             <div className="text-section">
-              Title:{' '}
-              <input className="user-selections" type="text" maxLength="35" />
-              Start Time: <input className="user-selections" type="text" />
-              Ideal Party Size:<select className="user-selections">
+              Title:
+              <input className="user-selections title" type="text" maxLength="35" onChange={event => this.handleChange(event)} />
+              Start Time: <input className="user-selections startTime" type="text" onChange={event => this.handleChange(event)} />
+              Ideal Party Size:<select className="user-selections partySize" onChange={event => this.handleChange(event)}>
                 <option />
                 <option>2</option>
                 <option>3</option>
@@ -115,7 +123,7 @@ export default class CreateLobby extends React.Component {
               </select>
             </div>
             <div className="short-description">
-              Description: <textarea rows="4" cols="50" />
+              Description: <textarea rows="4" cols="50" className='dummyClass description' onChange={event => this.handleChange(event)} />
             </div>
             <Link to={'/lobby'} onClick={this.closeModal}>
               <input

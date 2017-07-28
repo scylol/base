@@ -5,14 +5,22 @@ import { connect } from 'react-redux';
 import Room from './Room';
 // import Required from './Required';
 import { fetchPlatform } from '../../actions/lobby';
+import {socket} from '../../App';
 
 class Lobby extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  componentWillMount() {
-  //  this.props.fetchPlatform('XBOX');
+  constructor(props) {
+    super(props);
+    socket.on('user-joined', (data) => {
+      console.log(data);
+    })
+
   }
+
+  // renderLobbies() {
+  //    socket.on('user-joined', (data) => {
+  //     console.log(data);
+  //   })
+  // }
 
   render() {
     const { platform, region, game } = this.props;

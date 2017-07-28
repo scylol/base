@@ -4,8 +4,20 @@ import { connect } from 'react-redux';
 import { updateGameSelection } from '../../actions/actions';
 import games from '../../utils/games';
 import Selector from './Selector';
+import {socket} from '../../App';
 
 class GameSelect extends Component {
+  constructor() {
+    super()
+
+    this._clickHandler = this._clickHandler.bind(this);
+  }
+
+   _clickHandler() {
+    socket.emit('join-room', {
+      selection: this.props.userSelections
+    });
+  }
   render() {
     const gameRender = games.map(game => {
       return (
@@ -24,7 +36,7 @@ class GameSelect extends Component {
           {gameRender}
         </div>
         <Link to={'/lobby'}>
-          <button>Find Lobby</button>
+          <button onClick={this._clickHandler}>Find Lobby</button>
         </Link>
       </div>
     );
