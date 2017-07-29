@@ -56,8 +56,8 @@ class SideBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser,
-    selection: state.userSelections
+    currentUser: state.reducer.currentUser,
+    selection: state.reducer.userSelections
   };
 };
 

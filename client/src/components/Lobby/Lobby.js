@@ -4,24 +4,13 @@ import { connect } from 'react-redux';
 // import Title from './Title';
 import Room from './Room';
 // import Required from './Required';
-import { fetchPlatform } from '../../actions/lobby';
 
 
 class Lobby extends Component {
   constructor(props) {
     super(props);
-    // socket.on('user-joined', (data) => {
-    //   console.log(data);
-      
-    // })
 
   }
-
-  // renderLobbies() {
-  //    socket.on('user-joined', (data) => {
-  //     console.log(data);
-  //   })
-  // }
 
   render() {
     const { platform, region, game } = this.props;
@@ -35,8 +24,8 @@ class Lobby extends Component {
 
 }
 
-const mapStateToProps = ({ userSelections }) => {
-  const { platform, region, game } = userSelections;
+const mapStateToProps = (state) => {
+  const { platform, region, game } = state.reducer.userSelections;
   return {
     platform,
     region,
@@ -44,4 +33,4 @@ const mapStateToProps = ({ userSelections }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchPlatform })(Lobby);
+export default connect(mapStateToProps)(Lobby);

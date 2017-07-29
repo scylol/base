@@ -1,6 +1,5 @@
-// export const FETCH_PLATFORM = 'fetch_platform';
-
-// export const fetchPlatform = (platform) => {
-//   type: FETCH_PLATFORM,
-//   platform
-// }
+export const RENDER_GROUP = 'RENDER_GROUP';
+export const renderGroup = (selection) => ({
+  type: RENDER_GROUP,
+  selection
+})

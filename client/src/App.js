@@ -49,7 +49,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.reducer.currentUser
 });
 
 export default connect(mapStateToProps)(App);

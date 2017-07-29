@@ -1,18 +1,16 @@
-import { FETCH_PLATFORM } from '../actions/lobby';
+import { RENDER_GROUP } from '../actions/lobby';
 
 const initialState = {
-  platform: '',
-  region: '',
-  game: '',
-  lobbyLeader: '',
-  capacity: '',
-  maxParty: ''
+  lobbies: []
 };
 
 export default function(state = initialState, action) {
-  switch(action.type) {
-    case FETCH_PLATFORM:
-      return { ...state, platform: action.payload };
+  switch (action.type) {
+    case RENDER_GROUP:
+      return {
+        ...state,
+        lobbies: [...state.lobbies, { ...action.selection.selection }]
+      };
 
     default:
       return state;
