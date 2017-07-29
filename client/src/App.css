@@ -53,10 +53,10 @@
   margin-left: 25px; }
 
 .profile-icon {
-  height: 50;
-  width: 50;
-  marginLeft: 20;
-  marginRight: 20; }
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  margin-left: 20px; }
 
 .profile-icon {
   height: 50;
@@ -124,9 +124,10 @@
 .room {
   display: 'flex';
   flex: 1;
-  borderStyle: 'solid';
-  padding: 10;
-  margin: 10; }
+  align-items: center;
+  justify-content: space-around; }
+  .room button {
+    margin-top: 0; }
 
 body {
   font-family: 'Montserrat', sans-serif;
