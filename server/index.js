@@ -185,7 +185,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           const room = game.toLowerCase().replace(/\s+/g, '');
           socket.join(room);
 
-          socket.broadcast.to(room).emit('user-joined', 'A user joined the room');
+          socket.in(room).emit('create-group', data);
         });
         
         socket.on('join-room', data => {

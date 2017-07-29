@@ -5,6 +5,9 @@ let socket;
 
 export function socketConnect(store){
   socket = io.connect('http://localhost:3001');
+  socket.on('create-group', (data) => {
+    console.log(data);
+  });
 }
 
 export function socketMiddleware(store) {
