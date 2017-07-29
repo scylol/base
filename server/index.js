@@ -171,7 +171,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         console.log('made socket connection');
 
         socket.on('create-group', data => {
-          console.log('group created')
+          console.log(data)
           const {
             platform,
             game,

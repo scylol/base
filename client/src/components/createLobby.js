@@ -3,8 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './createLobby.css';
-import {createGroup} from '../actions/actions';
-
+import { createGroup } from '../actions/actions';
 
 export class CreateLobby extends React.Component {
   constructor() {
@@ -22,7 +21,6 @@ export class CreateLobby extends React.Component {
         partySize: '',
         description: ''
       }
-     
     };
 
     this.openModal = this.openModal.bind(this);
@@ -42,16 +40,19 @@ export class CreateLobby extends React.Component {
     const category = event.target.className.split(' ')[1];
     let obj = {};
     obj[category] = event.target.value;
-    this.setState(obj);
+    this.setState({
+      modalIsOpen: true,
+      selection: {
+        ...this.state.selection,
+        ...obj
+      }
+    });
   }
   _clickHandler() {
-    
-this.props.dispatch(createGroup(this.state.selection));
+    this.props.dispatch(createGroup(this.state.selection));
     //dispatch action for create group
     //this action will be handled in the middleware
   }
-
-
 
   render() {
     return (
@@ -114,9 +115,22 @@ this.props.dispatch(createGroup(this.state.selection));
             </div>
             <div className="text-section">
               Title:
-              <input className="user-selections title" type="text" maxLength="35" onChange={event => this.handleChange(event)} />
-              Start Time: <input className="user-selections startTime" type="text" onChange={event => this.handleChange(event)} />
-              Ideal Party Size:<select className="user-selections partySize" onChange={event => this.handleChange(event)}>
+              <input
+                className="user-selections title"
+                type="text"
+                maxLength="35"
+                onChange={event => this.handleChange(event)}
+              />
+              Start Time:{' '}
+              <input
+                className="user-selections startTime"
+                type="text"
+                onChange={event => this.handleChange(event)}
+              />
+              Ideal Party Size:<select
+                className="user-selections partySize"
+                onChange={event => this.handleChange(event)}
+              >
                 <option />
                 <option>2</option>
                 <option>3</option>
@@ -127,7 +141,13 @@ this.props.dispatch(createGroup(this.state.selection));
               </select>
             </div>
             <div className="short-description">
-              Description: <textarea rows="4" cols="50" className='dummyClass description' onChange={event => this.handleChange(event)} />
+              Description:{' '}
+              <textarea
+                rows="4"
+                cols="50"
+                className="dummyClass description"
+                onChange={event => this.handleChange(event)}
+              />
             </div>
             <Link to={'/lobby'} onClick={this.closeModal}>
               <input
@@ -143,7 +163,5 @@ this.props.dispatch(createGroup(this.state.selection));
     );
   }
 }
-
-
 
 export default connect(null)(CreateLobby);
