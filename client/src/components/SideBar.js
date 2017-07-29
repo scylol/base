@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchUser, logoutUser } from '../actions/actions';
 import * as Cookies from 'js-cookie';
 import CreateLobby from './createLobby';
-import io from 'socket.io-client';
-import { socket } from '../App';
+
 
 
 class SideBar extends Component {

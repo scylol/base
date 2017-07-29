@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateGameSelection } from '../../actions/actions';
 import games from '../../utils/games';
 import Selector from './Selector';
-import {socket} from '../../App';
+
 
 class GameSelect extends Component {
   constructor() {
@@ -14,9 +14,9 @@ class GameSelect extends Component {
   }
 
    _clickHandler() {
-    socket.emit('join-room', {
-      selection: this.props.userSelections
-    });
+    // socket.emit('join-room', {
+    //   selection: this.props.userSelections
+    // });
   }
   render() {
     const gameRender = games.map(game => {

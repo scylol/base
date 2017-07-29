@@ -1,6 +1,12 @@
 /* eslint-disable */
 import * as Cookies from 'js-cookie';
 
+export const CREATE_GROUP = 'CREATE_GROUP';
+export const createGroup = (selection) => ({
+  type: CREATE_GROUP,
+  selection
+})
+
 export const UPDATE_SLIDERS = ' UPDATE_SLIDERS';
 export const updateSliders = (value, sliderName) => ({
   type: UPDATE_SLIDERS,

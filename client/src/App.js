@@ -6,7 +6,7 @@ import ProfilePage from './components/ProfilePage/profilePage';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import SideBar from './components/SideBar';
-import io from 'socket.io-client';
+
 
 import CreateLobby from './components/createLobby';
 
@@ -16,7 +16,7 @@ import GameSelect from './components/Main/GameSelect';
 import PlatformSelect from './components/Main/PlatformSelect';
 import RegionSelect from './components/Main/RegionSelect';
 
-export const socket = io.connect('http://localhost:3001');
+
 
 class App extends Component {
   componentDidMount() {

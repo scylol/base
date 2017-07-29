@@ -171,6 +171,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         console.log('made socket connection');
 
         socket.on('create-group', data => {
+          console.log('group created')
           const {
             platform,
             game,
@@ -181,7 +182,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
             partySize,
             description
           } = data.selection;
-          const room = `${game}`;
+          const room = game.toLowerCase().replace(/\s+/g, '');
           socket.join(room);
 
           socket.broadcast.to(room).emit('user-joined', 'A user joined the room');

@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './createLobby.css';
-import { socket } from '../App';
+import {createGroup} from '../actions/actions';
 
-export default class CreateLobby extends React.Component {
+
+export class CreateLobby extends React.Component {
   constructor() {
     super();
 
@@ -26,6 +28,7 @@ export default class CreateLobby extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this._clickHandler = this._clickHandler.bind(this);
   }
 
   openModal() {
@@ -42,9 +45,10 @@ export default class CreateLobby extends React.Component {
     this.setState(obj);
   }
   _clickHandler() {
-    socket.emit('create-group', {
-      selection: this.state.selection
-    });
+    
+this.props.dispatch(createGroup(this.state.selection));
+    //dispatch action for create group
+    //this action will be handled in the middleware
   }
 
 
@@ -139,3 +143,7 @@ export default class CreateLobby extends React.Component {
     );
   }
 }
+
+
+
+export default connect(null)(CreateLobby);

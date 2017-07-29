@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import Room from './Room';
 // import Required from './Required';
 import { fetchPlatform } from '../../actions/lobby';
-import {socket} from '../../App';
+
 
 class Lobby extends Component {
   constructor(props) {
     super(props);
-    socket.on('user-joined', (data) => {
-      console.log(data);
-    })
+    // socket.on('user-joined', (data) => {
+    //   console.log(data);
+      
+    // })
 
   }
 
