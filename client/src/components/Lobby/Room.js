@@ -13,13 +13,13 @@ class Room extends Component {
   }
 
   render() {
-    const { platform, region, game } = this.props;
+    
     return (
       <div className="lobby" >
         <h3>{platform} - {region} - {game}</h3>
           <Lobby />
       </div>
-    );
+    ); 
   }
 
 }
