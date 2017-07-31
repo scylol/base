@@ -10,18 +10,25 @@ class Lobby extends Component {
 
   componentDidMount() {
     console.log(this.props.lobbies)
+    // console.log(this.props.selections)
   }
   render() {
     // const { mic, time, language, partyNow, partyMax } = this.props;
     let lobbies = this.props.lobbies.map((lobby, index) => {
       return (
         <div className= 'room' key={index} style={styles.roomStyles}>
-          <p>{lobby.title}</p>
+          <h3>{lobby.title}</h3>
+          <p>{lobby.description}</p>
+          <p>Voice Required: {lobby.voice}</p>
+          <p>Start Time: {lobby.startTime}</p>
+          <p> Ideal Party Size: {lobby.partySize}</p>
+          <button>Sign Up</button>
         </div>
       )
     })
     return (
-      <div className="room" style={styles.roomStyles}>
+      <div className='lobby-container'>
+      <h3>{this.props.selections.platform}</h3>
         {lobbies}
       </div>
     );
@@ -50,7 +57,8 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    lobbies: state.lobbyReducers.lobbies
+    lobbies: state.lobbyReducers.lobbies,
+    selections: state.reducer.userSelections
   };
 };
 
