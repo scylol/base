@@ -7,36 +7,19 @@ import Modal from './Modal';
 import {getLobbiesFromDatabase, signUp} from '../../actions/lobby';
 
 class Lobby extends Component {
-   constructor() {
-    super();
-
-    this.state = {
-        info: {
-          name: '',
-          googleId: '',
-          roomNumber: ''
-        }
-      }
-    };
-
-
   
-
   componentDidMount() {
      this.props.dispatch(getLobbiesFromDatabase());
   }
 
   _clickHandler(event) {
     const roomNumber = event.target.id;
-    console.log('The room number is' , roomNumber);
-    console.log(this.props.currentUser)
     const data = {
       name:this.props.currentUser.name,
       googleId: this.props.currentUser.googleId,
       roomNumber: roomNumber
     }
 
-    //need to make a dispatch and pass these as params
     this.props.dispatch(signUp(data));
   }
   render() {

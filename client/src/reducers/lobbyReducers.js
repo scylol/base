@@ -1,11 +1,12 @@
-import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR  } from '../actions/lobby';
+import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER  } from '../actions/lobby';
 
 
 const initialState = {
   socketLobbies: [],
   databaseLobbies: [],
   loading: null,
-  error: null
+  error: null,
+  userInfo: []
 
 };
 
@@ -16,6 +17,11 @@ export default function(state = initialState, action) {
         ...state,
         socketLobbies: [...state.socketLobbies, { ...action.selection.selection }]
       };
+      case RENDER_USER:
+      return {
+        ...state,
+        userInfo: [...state.userInfo, {...action.user}]
+      }
       case GET_LOBBIES_REQUEST:
       return {...state, loading: true, error: null};
 

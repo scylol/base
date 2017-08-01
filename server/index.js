@@ -238,7 +238,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
            console.log('user', user);
             const room = user.roomNumber;
             socket.join(room);
-             socket.to(room).emit('sign-up', user);
+            socket.to(room).emit('sign-up', user);
         })
       });
     });
