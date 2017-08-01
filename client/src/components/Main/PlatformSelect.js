@@ -13,7 +13,7 @@ class PlatformSelect extends Component {
           key={platform.title}
           title={platform.title}
           image={platform.image}
-          onClick={p => this.props.dispatch(updatePlatformSelection(p))}
+          onClick={p => this.props.dispatch(updatePlatformSelection(p.toLowerCase().replace(/\s+/g, '')))}
         />
       );
     });

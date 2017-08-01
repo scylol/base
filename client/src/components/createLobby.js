@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './createLobby.css';
-import { createGroup } from '../actions/actions';
+import { createGroup, saveLobbyInDatabase } from '../actions/actions';
 
 export class CreateLobby extends React.Component {
   constructor() {
@@ -19,7 +19,8 @@ export class CreateLobby extends React.Component {
         title: '',
         startTime: '',
         partySize: '',
-        description: ''
+        description: '',
+        roomNumber: ''
       }
     };
 
@@ -30,7 +31,8 @@ export class CreateLobby extends React.Component {
   }
 
   openModal() {
-    this.setState({ modalIsOpen: true });
+    this.setState({ modalIsOpen: true, selection: {...this.state.selection, roomNumber: this.props.currentUser.googleId}});
+    
   }
 
   closeModal() {
@@ -39,7 +41,12 @@ export class CreateLobby extends React.Component {
   handleChange(event) {
     const category = event.target.className.split(' ')[1];
     let obj = {};
-    obj[category] = event.target.value;
+    if(category === 'game' || category === 'region' || category === 'platform') {
+      obj[category] = event.target.value.toLowerCase().replace(/\s+/g, '');
+    }
+    else {
+      obj[category] = event.target.value;
+    }
     this.setState({
       modalIsOpen: true,
       selection: {
@@ -52,6 +59,7 @@ export class CreateLobby extends React.Component {
     this.props.dispatch(createGroup(this.state.selection));
     //dispatch action for create group
     //this action will be handled in the middleware
+    this.props.dispatch(saveLobbyInDatabase(this.state.selection));
   }
 
   render() {
@@ -164,4 +172,10 @@ export class CreateLobby extends React.Component {
   }
 }
 
-export default connect(null)(CreateLobby);
+const mapStateToProps = state => {
+  return {
+    currentUser: state.reducer.currentUser
+  };
+};
+
+export default connect(mapStateToProps)(CreateLobby);

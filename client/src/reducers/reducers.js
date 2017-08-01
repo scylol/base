@@ -18,15 +18,7 @@ const initialState = {
   userSelections: {
     platform: '',
     region: '',
-    game: '',
-    mic: '',
-    time: '',
-    language: '',
-    partyNow: '',
-    partyMax: '',
-    title: '',
-    description: '',
-    partyMembers: []
+    game: ''
   },
   loading: false,
   slider1: 50,

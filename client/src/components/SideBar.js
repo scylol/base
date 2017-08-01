@@ -21,6 +21,16 @@ class SideBar extends Component {
 
 
   render() {
+
+    let signerUppers = this.props.signerUpInfo.map((user, index) => {
+      
+      return (
+        <div className= 'user-info'  key={index}>
+          <h3>{user.user.name}</h3>
+         
+        </div>
+      )
+    })
     let buttonText = '';
     this.props.currentUser.isLogged
       ? (buttonText = 'Log Out')
@@ -37,7 +47,7 @@ class SideBar extends Component {
           <h1>Base</h1>
         </Link>
         <CreateLobby />
-
+        {signerUppers}
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
           <p>
@@ -57,7 +67,8 @@ class SideBar extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.reducer.currentUser,
-    selection: state.reducer.userSelections
+    selection: state.reducer.userSelections,
+    signerUpInfo: state.lobbyReducers.userInfo
   };
 };
 
