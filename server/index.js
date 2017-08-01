@@ -217,7 +217,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           } = data.selection;
           const myRoom = roomNumber;
           socket.join(myRoom);
-          console.log(myRoom);
+          console.log('creator joined',myRoom);
           const room = platform + region + game;
           room.toLowerCase().replace(/\s+/g, '');
           console.log(room)
@@ -225,7 +225,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         });
         
         socket.on('join-room', data => {
-          console.log('data', data);
+          // console.log('data', data);
           const { platform, game, region } = data.selection;
            const room = platform + region + game
           room.toLowerCase().replace(/\s+/g, '');
@@ -235,8 +235,8 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         });
 
         socket.on('sign-up', (user) => {
-           console.log('user', user);
-            const room = user.roomNumber;
+           console.log('user is potatoes', user.user.roomNumber);
+            const room = user.user.roomNumber;
             socket.join(room);
             socket.to(room).emit('sign-up', user);
         })
