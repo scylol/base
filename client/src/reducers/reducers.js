@@ -34,7 +34,7 @@ const initialState = {
 export default function (state = initialState, action) {
 
   switch (action.type) {
-    
+
     case FETCH_USER_REQUEST:
       return { ...state, loading: true, error: null };
     case FETCH_USER_ERROR:
@@ -90,7 +90,7 @@ export default function (state = initialState, action) {
           game: action.selection
         }
       };
-    case UPDATE_SLIDERS:  
+    case UPDATE_SLIDERS:
       if (action.sliderName === 'slider1') {
         return { ...state, slider1: action.value };
       } else if (action.sliderName === 'slider2') {

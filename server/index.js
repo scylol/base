@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const socketServer = require('socket.io');
+const socket = require('socket.io');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const mongoose = require('mongoose');
@@ -10,7 +12,7 @@ const cors = require('cors');
 
 require('dotenv').config();
 const { DATABASE_URL, PORT } = process.env;
-const { User } = require('./models');
+const { User, Lobby } = require('./models');
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
@@ -62,6 +64,38 @@ app.put(
       });
   }
 );
+
+//lobby creation endpoint
+
+app.post('/api/lobbies', (req, res) => {
+  Lobby.create({
+    lobby: req.body.lobby
+  })
+  .then(result => {
+      return res.status(201).json(result.apiRepr());
+      
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: 'Something went wrong!!!'});
+    });
+})
+
+//get endpoint needs to find by game/platform/region
+app.get('/api/lobbies/:platform/:region/:game', (req, res) => {
+  console.log(req.params.platform)
+  Lobby.find().where('lobby.platform').equals(req.params.platform)
+  .where('lobby.region', req.params.region).where('lobby.game', req.params.game)
+  .then(result => {
+    console.log(result)
+      return res.json(result);
+      
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: 'Something went wrong!!!'});
+    });
+})
 
 //Google Oath
 passport.use(
@@ -163,10 +197,49 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           mongoose.disconnect();
           reject(err);
         });
-      const io = socketServer(server);
+      const io = socket(server);
 
       io.on('connection', socket => {
         console.log('made socket connection');
+
+        socket.on('create-group', data => {
+          console.log(data)
+          const {
+            platform,
+            game,
+            region,
+            voice,
+            title,
+            startTime,
+            partySize,
+            description,
+            roomNumber
+          } = data.selection;
+          const myRoom = roomNumber;
+          socket.join(myRoom);
+          console.log(myRoom);
+          const room = platform + region + game;
+          room.toLowerCase().replace(/\s+/g, '');
+          console.log(room)
+          socket.to(room).emit('create-group', data);
+        });
+        
+        socket.on('join-room', data => {
+          console.log('data', data);
+          const { platform, game, region } = data.selection;
+           const room = platform + region + game
+          room.toLowerCase().replace(/\s+/g, '');
+          console.log(room)
+          socket.join(room);
+          
+        });
+
+        socket.on('sign-up', (user) => {
+           console.log('user', user);
+            const room = user.roomNumber;
+            socket.join(room);
+            socket.to(room).emit('sign-up', user);
+        })
       });
     });
   });

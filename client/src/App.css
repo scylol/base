@@ -47,16 +47,16 @@
       margin-left: 25px; }
 
 .lobby {
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  margin-left: 25%; }
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px; }
 
 .profile-icon {
-  height: 50;
-  width: 50;
-  marginLeft: 20;
-  marginRight: 20; }
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  margin-left: 20px; }
 
 .profile-icon {
   height: 50;
@@ -117,6 +117,17 @@
         width: 75px;
         margin-top: 25px;
         margin-bottom: auto; }
+
+.modal-div .dropdown-section option {
+  background-color: red !important; }
+
+.room {
+  display: 'flex';
+  flex: 1;
+  align-items: center;
+  justify-content: space-around; }
+  .room button {
+    margin-top: 0; }
 
 body {
   font-family: 'Montserrat', sans-serif;
