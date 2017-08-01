@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateGameSelection } from '../../actions/actions';
+import { updateGameSelection, joinLobbiesRoom } from '../../actions/actions';
 import games from '../../utils/games';
 import Selector from './Selector';
 
@@ -14,9 +14,8 @@ class GameSelect extends Component {
   }
 
    _clickHandler() {
-    // socket.emit('join-room', {
-    //   selection: this.props.userSelections
-    // });
+     this.props.dispatch(joinLobbiesRoom(this.props.userSelections));
+    console.log(this.props.userSelections)
   }
   render() {
     const gameRender = games.map(game => {
@@ -25,7 +24,7 @@ class GameSelect extends Component {
           key={game.title}
           title={game.title}
           image={game.image}
-          onClick={p => this.props.dispatch(updateGameSelection(p))}
+          onClick={p => this.props.dispatch(updateGameSelection(p.toLowerCase().replace(/\s+/g, '')))}
         />
       );
     });
@@ -45,7 +44,7 @@ class GameSelect extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    userSelections: state.userSelections
+    userSelections: state.reducer.userSelections
   };
 };
 

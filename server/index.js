@@ -12,7 +12,7 @@ const cors = require('cors');
 
 require('dotenv').config();
 const { DATABASE_URL, PORT } = process.env;
-const { User } = require('./models');
+const { User, Lobby } = require('./models');
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
@@ -64,6 +64,38 @@ app.put(
       });
   }
 );
+
+//lobby creation endpoint
+
+app.post('/api/lobbies', (req, res) => {
+  Lobby.create({
+    lobby: req.body.lobby
+  })
+  .then(result => {
+      return res.status(201).json(result.apiRepr());
+      
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: 'Something went wrong!!!'});
+    });
+})
+
+//get endpoint needs to find by game/platform/region
+app.get('/api/lobbies/:platform/:region/:game', (req, res) => {
+  console.log(req.params.platform)
+  Lobby.find().where('lobby.platform').equals(req.params.platform)
+  .where('lobby.region', req.params.region).where('lobby.game', req.params.game)
+  .then(result => {
+    console.log(result)
+      return res.json(result);
+      
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: 'Something went wrong!!!'});
+    });
+})
 
 //Google Oath
 passport.use(
@@ -180,22 +212,34 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
             title,
             startTime,
             partySize,
-            description
+            description,
+            roomNumber
           } = data.selection;
-          const room = game.toLowerCase().replace(/\s+/g, '');
-          socket.join(room);
-
+          const myRoom = roomNumber;
+          socket.join(myRoom);
+          console.log(myRoom);
+          const room = platform + region + game;
+          room.toLowerCase().replace(/\s+/g, '');
+          console.log(room)
           socket.to(room).emit('create-group', data);
         });
         
         socket.on('join-room', data => {
           console.log('data', data);
           const { platform, game, region } = data.selection;
-          const room = game.toLowerCase().replace(/\s+/g, '');
+           const room = platform + region + game
+          room.toLowerCase().replace(/\s+/g, '');
           console.log(room)
           socket.join(room);
-          socket.broadcast.to(room).emit('user-joined', 'A user joined the room');
+          
         });
+
+        socket.on('sign-up', (user) => {
+           console.log('user', user);
+            const room = user.roomNumber;
+            socket.join(room);
+             socket.to(room).emit('sign-up', user);
+        })
       });
     });
   });

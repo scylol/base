@@ -5,7 +5,15 @@ export const CREATE_GROUP = 'CREATE_GROUP';
 export const createGroup = (selection) => ({
   type: CREATE_GROUP,
   selection
-})
+});
+
+export const JOIN_LOBBIES_ROOM = 'JOIN_LOBBIES_ROOM';
+export const joinLobbiesRoom = (selection) => ({
+  type: JOIN_LOBBIES_ROOM,
+  selection
+});
+
+
 
 export const UPDATE_SLIDERS = ' UPDATE_SLIDERS';
 export const updateSliders = (value, sliderName) => ({
@@ -82,6 +90,8 @@ export const fetchUser = accessToken => dispatch => {
     });
 };
 
+
+
 export const updateUserProfile = (accessToken) => (dispatch, getState) => {
   const state = getState();
   
@@ -107,6 +117,26 @@ export const updateUserProfile = (accessToken) => (dispatch, getState) => {
     console.log(err);
   });
 };
+
+export const saveLobbyInDatabase = (selections) => (dispatch) => {
+  
+
+  fetch('/api/lobbies', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+     lobby: selections
+    })
+  }).then((res) => {
+    console.log(res)
+    return res.json();
+  })
+  .catch(err => console.error(err))
+}
+
 export const logoutUser = () => dispatch => {
   dispatch(logoutRequest());
       console.log('hit success')
