@@ -18,7 +18,6 @@ class SideBar extends Component {
     }
   };
 
-
   render() {
 
     let signerUppers = this.props.signerUpInfo.map((user, index) => {
