@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import Message from './Message';
 
 class ChatRoom extends Component {
-  render(){
-  return (
+
+  render() {
+    return (
     <div className="ChatRoom" >
-    This displays all the messages
-      <Message />
-    </div>
-  );
+        <Message />
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: this.props
+    message: state.lobbyReducers
   }
 }
 

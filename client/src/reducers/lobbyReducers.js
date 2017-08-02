@@ -14,7 +14,7 @@ const initialState = {
   loading: null,
   error: null,
   userInfo: [],
-  message: ''
+  message: []
 };
 
 export default function(state = initialState, action) {
@@ -32,7 +32,7 @@ export default function(state = initialState, action) {
       case RENDER_CHAT:
       return {
         ...state,
-        userInfo: [...state.message, {...action.message}]
+        message: [...state.message, {...action.message}]
       }
       case GET_LOBBIES_REQUEST:
       return {...state, loading: true, error: null};

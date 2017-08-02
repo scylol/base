@@ -25,7 +25,7 @@ class SideBar extends Component {
 
       return (
         <div className= 'user-info'  key={index}>
-          <h3>{user.user.name}</h3>
+          <h3>{'user.user.name'}</h3>
 
         </div>
       )

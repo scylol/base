@@ -14,6 +14,7 @@ export function socketConnect(store){
     store.dispatch(renderUser(user));
   });
   socket.on('chat-room', (message) => {
+    console.log('This is the middleware', message);
     store.dispatch(renderChat(message));
   });
 }
