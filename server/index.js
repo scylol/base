@@ -242,9 +242,9 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         })
 
         socket.on('chat-room', message => {
-          // socket.emit('chat-room', message);
+          socket.emit('chat-room', message);
           console.log(message);
-          io.of('chat-room').emit('chat-room', message);
+          // io.of('chat-room').emit('chat-room', message);
         })
 
       });
