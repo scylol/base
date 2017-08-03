@@ -5,13 +5,15 @@ import {
   UPDATE_SLIDERS,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  CREATE_GROUP
 } from '../actions/actions';
 
 const initialState = {
   currentUser: {
     isLogged: false,
     name: '',
+    nameConstant: '',
     googleId: '',
     photo: null
   },
@@ -45,6 +47,7 @@ export default function (state = initialState, action) {
         currentUser: {
           isLogged: true,
           name: action.user.name,
+          nameConstant: action.user.name,
           googleId: action.user.googleId,
           photo: action.user.image
         },
@@ -72,7 +75,8 @@ export default function (state = initialState, action) {
         userSelections: {
           ...state.userSelections,
           platform: action.selection
-        }
+        },
+        currentUser: {...state.currentUser, name: state.currentUser.nameConstant}
       };
     case 'UPDATE_REGION':
       return {
@@ -104,6 +108,15 @@ export default function (state = initialState, action) {
       } else if (action.sliderName === 'slider6') {
         return { ...state, slider6: action.value };
       }
+      case CREATE_GROUP:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          name: action.selection.name
+        }
+      }
+     
     default:
       return state;
   }

@@ -20,7 +20,8 @@ export class CreateLobby extends React.Component {
         startTime: '',
         partySize: '',
         description: '',
-        roomNumber: ''
+        roomNumber: '',
+        name: ''
       }
     };
 
@@ -31,7 +32,7 @@ export class CreateLobby extends React.Component {
   }
 
   openModal() {
-    this.setState({ modalIsOpen: true, selection: {...this.state.selection, roomNumber: this.props.currentUser.googleId}});
+    this.setState({ modalIsOpen: true, selection: {...this.state.selection, roomNumber: this.props.currentUser.googleId, name: this.props.currentUser.name+'(Leader)'}});
     
   }
 
