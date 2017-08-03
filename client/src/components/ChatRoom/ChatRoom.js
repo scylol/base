@@ -71,7 +71,7 @@ constructor() {
     let acceptedUsers = this.props.acceptedUsers.map((user, index) => {
       return (
         <div className= 'accepted-user'  key={index}>
-          <h6>{user.user.name} has joined the party!</h6>
+          <h6>{user.user.name}</h6>
 
         </div>
       )
@@ -82,9 +82,8 @@ constructor() {
     <div className="ChatRoom" >
         <Message />
         {signerUppers}
-        <h3>ACCEPTED</h3>
+        <h3>Party Members</h3>
         {acceptedUsers}
-        <h3>FEEDBACK</h3>
         {feedback}
       </div>
     );
