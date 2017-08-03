@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchUser, logoutUser } from '../actions/actions';
+import { fetchUser, logoutUser, joinLobbiesRoom } from '../actions/actions';
 import * as Cookies from 'js-cookie';
 import CreateLobby from './createLobby';
 import {userAccepted, userDeclined} from '../actions/lobby';
@@ -14,6 +14,7 @@ class SideBar extends Component {
     this.state = {
       hideUser: []
     }
+    this._clickHandler = this._clickHandler.bind(this);
   }
   _userLogButton = () => {
     const accessToken = Cookies.get('accessToken');
@@ -43,13 +44,20 @@ class SideBar extends Component {
     this.setState({showFeedback: true})
   }
 
+   _clickHandler() {
+     this.props.dispatch(joinLobbiesRoom(this.props.selection));
+    
+  }
+
   render() {
 
     let feedback = this.props.feedback.map((feedback, index) => {
       return (
-        <div className='feedback'>
+        <div className='feedback'  key={index}>
         <p>{feedback}</p>
-        <button>PLZ PLZ</button>
+        <Link to={'/lobby'}>
+        <button onClick={this._clickHandler}>Lobby Room</button>
+        </Link>
         </div>
       )
     })
