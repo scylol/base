@@ -1,4 +1,7 @@
-import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER, STORE_ACCEPTED_USER, STORE_FEEDBACK  } from '../actions/lobby';
+
+import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER, STORE_ACCEPTED_USER, STORE_FEEDBACK,  CHAT_ROOM,
+  RENDER_CHAT  } from '../actions/lobby';
+
 
 
 const initialState = {
@@ -7,8 +10,12 @@ const initialState = {
   loading: null,
   error: null,
   userInfo: [],
+
   acceptedUsers: [], 
   feedback: []
+
+
+  message: []
 
 };
 
@@ -24,6 +31,7 @@ export default function(state = initialState, action) {
         ...state,
         userInfo: [...state.userInfo, {...action.user}]
       }
+
       case STORE_ACCEPTED_USER:
       return {
         ...state,
@@ -33,6 +41,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         feedback: [...state.feedback, action.feedback]
+      }
+      case RENDER_CHAT:
+      return {
+        ...state,
+        message: [...state.message, {...action.message}]
+
       }
       case GET_LOBBIES_REQUEST:
       return {...state, loading: true, error: null};

@@ -73,6 +73,7 @@ app.post("/api/lobbies", (req, res) => {
   })
     .then(result => {
       return res.status(201).json(result.apiRepr());
+
     })
     .catch(err => {
       console.log(err);
@@ -91,6 +92,7 @@ app.get("/api/lobbies/:platform/:region/:game", (req, res) => {
     .then(result => {
       console.log(result);
       return res.json(result);
+
     })
     .catch(err => {
       console.log(err);
@@ -225,7 +227,9 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           socket.to(room).emit("create-group", data);
         });
 
+
         socket.on("join-room", data => {
+
           // console.log('data', data);
           const { platform, game, region } = data.selection;
           const room = platform + region + game;
@@ -239,6 +243,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           console.log('sign up', user)
           const room = user.user.roomNumber;
           socket.join(room);
+
           const data = [user, socket.id]
           console.log('data array',data)
           
@@ -251,6 +256,9 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           console.log('room is', room)
           socket.to(room).emit("user-accepted", user);
           socket.emit("user-accepted", user);
+
+
+
         });
 
         socket.on('user-declined', data => {
@@ -258,6 +266,13 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           const feedback = 'Sorry, you were declined. Please click the button below to go back to the lobby page.'
           socket.broadcast.to(data.socketId).emit('user-declined', feedback);
         })
+
+        socket.on('chat-room', message => {
+          socket.emit('chat-room', message);
+          console.log(message);
+          // io.of('chat-room').emit('chat-room', message);
+        })
+
       });
     });
   });

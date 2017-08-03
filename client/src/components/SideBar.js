@@ -7,7 +7,6 @@ import CreateLobby from './createLobby';
 import {userAccepted, userDeclined} from '../actions/lobby';
 
 
-
 class SideBar extends Component {
   constructor() {
     super()
@@ -26,6 +25,7 @@ class SideBar extends Component {
       this.props.dispatch(logoutUser());
     }
   };
+
 
   acceptedHandler(name, room) {
     const data = {
@@ -49,6 +49,7 @@ class SideBar extends Component {
     
   }
 
+
   render() {
 
     let feedback = this.props.feedback.map((feedback, index) => {
@@ -64,6 +65,7 @@ class SideBar extends Component {
     
 
     let signerUppers = this.props.signerUpInfo.map((user, index) => {
+
       if(this.state.hideUser[index] === true) {
         return (
           ''
@@ -82,6 +84,7 @@ class SideBar extends Component {
       return (
         <div className= 'accepted-user'  key={index}>
           <h6>{user.user.name} has joined the party!</h6>
+
         </div>
       )
     })
