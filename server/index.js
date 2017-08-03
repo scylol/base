@@ -1,26 +1,26 @@
 /* eslint-disable */
 
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const socket = require('socket.io');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const BearerStrategy = require('passport-http-bearer').Strategy;
-const mongoose = require('mongoose');
-const cors = require('cors');
+const path = require("path");
+const express = require("express");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const socket = require("socket.io");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const BearerStrategy = require("passport-http-bearer").Strategy;
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-require('dotenv').config();
+require("dotenv").config();
 const { DATABASE_URL, PORT } = process.env;
-const { User, Lobby } = require('./models');
+const { User, Lobby } = require("./models");
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
   CLIENT_SECRET: process.env.CLIENT_SECRET
 };
 
-if (process.env.NODE_ENV != 'production') {
-  secret = require('./secret');
+if (process.env.NODE_ENV != "production") {
+  secret = require("./secret");
 }
 
 const app = express();
@@ -29,16 +29,16 @@ app.use(passport.initialize());
 app.use(bodyParser.json());
 
 app.get(
-  '/api/me',
-  passport.authenticate('bearer', { session: false }),
+  "/api/me",
+  passport.authenticate("bearer", { session: false }),
   (req, res) => {
     return res.json(req.user);
   }
 );
 
 app.put(
-  '/api/users/:googleId',
-  passport.authenticate('bearer', { session: false }),
+  "/api/users/:googleId",
+  passport.authenticate("bearer", { session: false }),
   (req, res) => {
     User.findOneAndUpdate(
       { googleId: req.params.googleId },
@@ -55,47 +55,50 @@ app.put(
       { new: true }
     )
       .then(results => {
-        console.log('result from put' + results);
+        console.log("result from put" + results);
         res.json(results).end();
       })
       .catch(err => {
         console.log(err);
-        res.status(400).json({ error: 'Put request fail' });
+        res.status(400).json({ error: "Put request fail" });
       });
   }
 );
 
 //lobby creation endpoint
 
-app.post('/api/lobbies', (req, res) => {
+app.post("/api/lobbies", (req, res) => {
   Lobby.create({
     lobby: req.body.lobby
   })
-  .then(result => {
+    .then(result => {
       return res.status(201).json(result.apiRepr());
 
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: 'Something went wrong!!!'});
+      res.status(500).json({ error: "Something went wrong!!!" });
     });
-})
+});
 
 //get endpoint needs to find by game/platform/region
-app.get('/api/lobbies/:platform/:region/:game', (req, res) => {
-  console.log(req.params.platform)
-  Lobby.find().where('lobby.platform').equals(req.params.platform)
-  .where('lobby.region', req.params.region).where('lobby.game', req.params.game)
-  .then(result => {
-    console.log(result)
+app.get("/api/lobbies/:platform/:region/:game", (req, res) => {
+  console.log(req.params.platform);
+  Lobby.find()
+    .where("lobby.platform")
+    .equals(req.params.platform)
+    .where("lobby.region", req.params.region)
+    .where("lobby.game", req.params.game)
+    .then(result => {
+      console.log(result);
       return res.json(result);
 
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: 'Something went wrong!!!'});
+      res.status(500).json({ error: "Something went wrong!!!" });
     });
-})
+});
 
 //Google Oath
 passport.use(
@@ -103,7 +106,7 @@ passport.use(
     {
       clientID: secret.CLIENT_ID,
       clientSecret: secret.CLIENT_SECRET,
-      callbackURL: '/api/auth/google/callback'
+      callbackURL: "/api/auth/google/callback"
     },
     (accessToken, refreshToken, profile, cb) => {
       User.findOne({ googleId: profile.id }, function(err, user) {
@@ -146,37 +149,37 @@ passport.use(
 );
 
 app.get(
-  '/api/auth/google',
-  passport.authenticate('google', { scope: ['profile'] })
+  "/api/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
 );
 
 app.get(
-  '/api/auth/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/',
+  "/api/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/",
     session: false
   }),
   (req, res) => {
-    res.cookie('accessToken', req.user.accessToken, { expires: 0 });
-    res.redirect('/');
+    res.cookie("accessToken", req.user.accessToken, { expires: 0 });
+    res.redirect("/");
   }
 );
 
-app.get('/api/auth/logout', (req, res) => {
+app.get("/api/auth/logout", (req, res) => {
   req.logout();
-  res.clearCookie('accessToken');
-  res.redirect('/');
+  res.clearCookie("accessToken");
+  res.redirect("/");
 });
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
 
 app.get(/^(?!\/api(\/|$))/, (req, res) => {
-  const index = path.resolve(__dirname, '../client/build', 'index.html');
+  const index = path.resolve(__dirname, "../client/build", "index.html");
   res.sendFile(index);
 });
 
@@ -193,17 +196,17 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           console.log(`Your app is listening on port ${port}`);
           resolve();
         })
-        .on('error', err => {
+        .on("error", err => {
           mongoose.disconnect();
           reject(err);
         });
       const io = socket(server);
 
-      io.on('connection', socket => {
-        console.log('made socket connection');
+      io.on("connection", socket => {
+        console.log("made socket connection");
 
-        socket.on('create-group', data => {
-          console.log(data)
+        socket.on("create-group", data => {
+          console.log(data);
           const {
             platform,
             game,
@@ -215,30 +218,53 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
             description,
             roomNumber
           } = data.selection;
-          const myRoom = roomNumber;
+          const myRoom = roomNumber+'abc';
           socket.join(myRoom);
-          console.log('creator joined',myRoom);
+          console.log("creator joined", myRoom);
           const room = platform + region + game;
-          room.toLowerCase().replace(/\s+/g, '');
-          console.log(room)
-          socket.to(room).emit('create-group', data);
+          room.toLowerCase().replace(/\s+/g, "");
+
+          socket.to(room).emit("create-group", data);
         });
 
-        socket.on('join-room', data => {
+
+        socket.on("join-room", data => {
+
           // console.log('data', data);
           const { platform, game, region } = data.selection;
-           const room = platform + region + game
-          room.toLowerCase().replace(/\s+/g, '');
-          console.log(room)
+          const room = platform + region + game;
+          room.toLowerCase().replace(/\s+/g, "");
+
           socket.join(room);
+        });
+
+        socket.on("sign-up", user => {
+          console.log('socketID!!!!!! is' , socket.id)
+          console.log('sign up', user)
+          const room = user.user.roomNumber;
+          socket.join(room);
+
+          const data = [user, socket.id]
+          console.log('data array',data)
+          
+          socket.to(room+'abc').emit("sign-up", data);
+        });
+
+        socket.on("user-accepted", user => {
+          console.log('user ACCEPTED!!!!',user);
+          const room = user.user.room;
+          console.log('room is', room)
+          socket.to(room).emit("user-accepted", user);
+          socket.emit("user-accepted", user);
+
+
 
         });
 
-        socket.on('sign-up', (user) => {
-           console.log('user is potatoes', user.user.roomNumber);
-            const room = user.user.roomNumber;
-            socket.join(room);
-            socket.to(room).emit('sign-up', user);
+        socket.on('user-declined', data => {
+          console.log('USER DECLINED',data)
+          const feedback = 'Sorry, you were declined. Please click the button below to go back to the lobby page.'
+          socket.broadcast.to(data.socketId).emit('user-declined', feedback);
         })
 
         socket.on('chat-room', message => {
@@ -255,7 +281,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
-      console.log('Closing server');
+      console.log("Closing server");
       server.close(err => {
         if (err) {
           return reject(err);

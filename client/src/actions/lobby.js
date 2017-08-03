@@ -22,6 +22,30 @@ export const signUp = (user) => ({
   user
 });
 
+export const USER_ACCEPTED = 'USER_ACCEPTED';
+export const userAccepted = (user) => ({
+  type: USER_ACCEPTED,
+  user
+});
+
+export const USER_DECLINED = 'USER_DECLINED';
+export const userDeclined = (socketId) => ({
+  type: USER_DECLINED,
+  socketId
+});
+
+export const STORE_ACCEPTED_USER = 'STORE_ACCEPTED_USER';
+export const storeAcceptedUser = (user) => ({
+  type: STORE_ACCEPTED_USER,
+  user
+});
+
+export const STORE_FEEDBACK = 'STORE_FEEDBACK';
+export const storeFeedback = (feedback) => ({
+  type: STORE_FEEDBACK,
+  feedback
+});
+
 export const GET_LOBBIES_REQUEST = 'GET_LOBBIES_REQUEST';
 export const getLobbiesRequest = () => ({
   type: GET_LOBBIES_REQUEST

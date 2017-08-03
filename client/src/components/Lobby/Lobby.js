@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Icon from './Icon';
 import Title from './Title';
@@ -33,7 +34,9 @@ class Lobby extends Component {
           <p>Voice Required: {lobby.lobby.voice}</p>
           <p>Start Time: {lobby.lobby.startTime}</p>
           <p> Ideal Party Size: {lobby.lobby.partySize}</p>
+          <Link to={'/'}>
           <button id={lobby.lobby.roomNumber} onClick={event => this._clickHandler(event)}>Sign Up</button>
+          </Link>
         </div>
       )
     })
@@ -46,7 +49,9 @@ class Lobby extends Component {
           <p>Voice Required: {lobby.voice}</p>
           <p>Start Time: {lobby.startTime}</p>
           <p> Ideal Party Size: {lobby.partySize}</p>
-          <button id={lobby.roomNumber}>Sign Up</button>
+          <Link to={'/'}>
+          <button id={lobby.roomNumber} onClick={event => this._clickHandler(event)}>Sign Up</button>
+          </Link>
         </div>
       )
     })
