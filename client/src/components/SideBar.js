@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchUser, logoutUser } from '../actions/actions';
 import * as Cookies from 'js-cookie';
 import CreateLobby from './createLobby';
-import {userAccepted} from '../actions/lobby';
+import {userAccepted, userDeclined} from '../actions/lobby';
 
 
 
@@ -26,7 +26,7 @@ class SideBar extends Component {
     }
   };
 
-  _clickHandler(name, room) {
+  acceptedHandler(name, room) {
     const data = {
       name: name,
       room: room
@@ -36,7 +36,24 @@ class SideBar extends Component {
     this.setState({hideUser: [...this.state.hideUser, true]})
   }
 
+  declinedHandler(socketId) {
+    console.log('hello')
+    this.props.dispatch(userDeclined(socketId));
+    this.setState({hideUser: [...this.state.hideUser, true]})
+    this.setState({showFeedback: true})
+  }
+
   render() {
+
+    let feedback = this.props.feedback.map((feedback, index) => {
+      return (
+        <div className='feedback'>
+        <p>{feedback}</p>
+        <button>PLZ PLZ</button>
+        </div>
+      )
+    })
+    
 
     let signerUppers = this.props.signerUpInfo.map((user, index) => {
       if(this.state.hideUser[index] === true) {
@@ -46,9 +63,9 @@ class SideBar extends Component {
       }
       return (
         <div className= 'user-info'  key={index}>
-          <h3>{user.user.name}</h3>
-         <button className='accept-btn' onClick={() => this._clickHandler(this.props.signerUpInfo[index].user.name, this.props.signerUpInfo[index].user.roomNumber)}>Accept</button>
-         <button className='decline-btn'>Decline</button>
+          <h3>{user[0].user.name}</h3>
+         <button className='accept-btn' onClick={() => this.acceptedHandler(this.props.signerUpInfo[index][0].user.name, this.props.signerUpInfo[index][0].user.roomNumber)}>Accept</button>
+         <button className='decline-btn' onClick={() => this.declinedHandler(this.props.signerUpInfo[index][1])}>Decline</button>
         </div>
       )
     })
@@ -80,6 +97,8 @@ class SideBar extends Component {
         {signerUppers}
         <h3>ACCEPTED</h3>
         {acceptedUsers}
+        <h3>FEEDBACK</h3>
+        {feedback}
         <div className="profile-container">
           <img src={this.props.profileImage} alt="" />
           <p>
@@ -101,7 +120,8 @@ const mapStateToProps = state => {
     currentUser: state.reducer.currentUser,
     selection: state.reducer.userSelections,
     signerUpInfo: state.lobbyReducers.userInfo,
-    acceptedUsers: state.lobbyReducers.acceptedUsers
+    acceptedUsers: state.lobbyReducers.acceptedUsers,
+    feedback: state.lobbyReducers.feedback
   };
 };
 

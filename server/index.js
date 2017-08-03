@@ -235,10 +235,14 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         });
 
         socket.on("sign-up", user => {
+          console.log('socketID!!!!!! is' , socket.id)
           console.log('sign up', user)
           const room = user.user.roomNumber;
           socket.join(room);
-          socket.to(room+'abc').emit("sign-up", user);
+          const data = [user, socket.id]
+          console.log('data array',data)
+          
+          socket.to(room+'abc').emit("sign-up", data);
         });
 
         socket.on("user-accepted", user => {
@@ -248,6 +252,12 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           socket.to(room).emit("user-accepted", user);
           socket.emit("user-accepted", user);
         });
+
+        socket.on('user-declined', data => {
+          console.log('USER DECLINED',data)
+          const feedback = 'Sorry, you were declined. Please click the button below to go back to the lobby page.'
+          socket.broadcast.to(data.socketId).emit('user-declined', feedback);
+        })
       });
     });
   });

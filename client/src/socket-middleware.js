@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import {CREATE_GROUP, JOIN_LOBBIES_ROOM} from './actions/actions';
-import {SIGN_UP, USER_ACCEPTED} from './actions/lobby';
-import {renderGroup, renderUser, storeAcceptedUser} from './actions/lobby';
+import {SIGN_UP, USER_ACCEPTED, USER_DECLINED} from './actions/lobby';
+import {renderGroup, renderUser, storeAcceptedUser, storeFeedback} from './actions/lobby';
 
 let socket;
 
@@ -16,6 +16,10 @@ export function socketConnect(store){
   socket.on('user-accepted', (user) => {
     console.log('firing ma LZER!!!!!');
     store.dispatch(storeAcceptedUser(user));
+  });
+  socket.on('user-declined', (feedback) => {
+    console.log('TACOS!!!!!!!!!!');
+    store.dispatch(storeFeedback(feedback));
   });
 }
 
@@ -43,5 +47,12 @@ export function socketMiddleware(store) {
         user: action.user
       });
     }
+
+    if(socket && action.type === USER_DECLINED) {
+      socket.emit('user-declined', {
+        socketId: action.socketId
+      });
+    }
+
   };
 }
