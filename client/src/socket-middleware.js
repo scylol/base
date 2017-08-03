@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import {CREATE_GROUP, JOIN_LOBBIES_ROOM} from './actions/actions';
-import {SIGN_UP} from './actions/lobby';
-import {renderGroup, renderUser} from './actions/lobby';
+import {SIGN_UP, USER_ACCEPTED} from './actions/lobby';
+import {renderGroup, renderUser, storeAcceptedUser} from './actions/lobby';
 
 let socket;
 
@@ -12,6 +12,10 @@ export function socketConnect(store){
   });
   socket.on('sign-up', (user) => {
     store.dispatch(renderUser(user));
+  });
+  socket.on('user-accepted', (user) => {
+    console.log('firing ma LZER!!!!!');
+    store.dispatch(storeAcceptedUser(user));
   });
 }
 
@@ -24,13 +28,18 @@ export function socketMiddleware(store) {
         selection: action.selection
       });
     }
-    else if(socket && action.type === JOIN_LOBBIES_ROOM) {
+    if(socket && action.type === JOIN_LOBBIES_ROOM) {
       socket.emit('join-room', {
         selection: action.selection
       });
     }
-    else if(socket && action.type === SIGN_UP) {
+    if(socket && action.type === SIGN_UP) {
       socket.emit('sign-up', {
+        user: action.user
+      });
+    }
+    if(socket && action.type === USER_ACCEPTED) {
+      socket.emit('user-accepted', {
         user: action.user
       });
     }

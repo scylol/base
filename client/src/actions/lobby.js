@@ -16,6 +16,18 @@ export const signUp = (user) => ({
   user
 });
 
+export const USER_ACCEPTED = 'USER_ACCEPTED';
+export const userAccepted = (user) => ({
+  type: USER_ACCEPTED,
+  user
+});
+
+export const STORE_ACCEPTED_USER = 'STORE_ACCEPTED_USER';
+export const storeAcceptedUser = (user) => ({
+  type: STORE_ACCEPTED_USER,
+  user
+});
+
 export const GET_LOBBIES_REQUEST = 'GET_LOBBIES_REQUEST';
 export const getLobbiesRequest = () => ({
   type: GET_LOBBIES_REQUEST

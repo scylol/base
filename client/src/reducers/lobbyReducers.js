@@ -1,4 +1,4 @@
-import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER  } from '../actions/lobby';
+import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER, STORE_ACCEPTED_USER  } from '../actions/lobby';
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
   databaseLobbies: [],
   loading: null,
   error: null,
-  userInfo: []
+  userInfo: [],
+  acceptedUsers: []
 
 };
 
@@ -21,6 +22,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         userInfo: [...state.userInfo, {...action.user}]
+      }
+      case STORE_ACCEPTED_USER:
+      return {
+        ...state,
+        acceptedUsers: [...state.acceptedUsers, {...action.user}]
       }
       case GET_LOBBIES_REQUEST:
       return {...state, loading: true, error: null};

@@ -46,7 +46,7 @@ class Lobby extends Component {
           <p>Voice Required: {lobby.voice}</p>
           <p>Start Time: {lobby.startTime}</p>
           <p> Ideal Party Size: {lobby.partySize}</p>
-          <button id={lobby.roomNumber}>Sign Up</button>
+          <button id={lobby.roomNumber} onClick={event => this._clickHandler(event)}>Sign Up</button>
         </div>
       )
     })
