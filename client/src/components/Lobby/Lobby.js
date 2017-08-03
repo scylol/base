@@ -5,7 +5,7 @@ import Icon from './Icon';
 import Title from './Title';
 import Required from './Required';
 import Modal from './Modal';
-import {getLobbiesFromDatabase, signUp} from '../../actions/lobby';
+import {getLobbiesFromDatabase, signUp, storeRoom} from '../../actions/lobby';
 
 class Lobby extends Component {
   
@@ -22,6 +22,7 @@ class Lobby extends Component {
     }
 
     this.props.dispatch(signUp(data));
+    this.props.dispatch(storeRoom(roomNumber));
   }
   render() {
 

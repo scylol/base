@@ -220,6 +220,8 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           } = data.selection;
           const myRoom = roomNumber+'abc';
           socket.join(myRoom);
+          socket.join(roomNumber);
+         
           console.log("creator joined", myRoom);
           const room = platform + region + game;
           room.toLowerCase().replace(/\s+/g, "");
@@ -254,8 +256,8 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           console.log('user ACCEPTED!!!!',user);
           const room = user.user.room;
           console.log('room is', room)
-          socket.to(room).emit("user-accepted", user);
-          socket.emit("user-accepted", user);
+          io.in(room).emit("user-accepted", user);
+          // socket.emit("user-accepted", user);
 
 
 
@@ -268,9 +270,12 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         })
 
         socket.on('chat-room', message => {
-          socket.emit('chat-room', message);
-          console.log(message);
-          // io.of('chat-room').emit('chat-room', message);
+          const room = message.message.room;
+          const creatorRoom = message.message.room+'abc';
+          console.log(room)
+          io.in(room).emit('chat-room', message);
+          //  socket.to(creatorRoom).emit('chat-room', message);
+          
         })
 
       });

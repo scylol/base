@@ -9,7 +9,8 @@ class ChatRoom extends Component {
 constructor() {
     super()
     this.state = {
-      hideUser: []
+      hideUser: [],
+      showFeedback: false
     }
     this._clickHandler = this._clickHandler.bind(this);
   }
@@ -33,11 +34,13 @@ constructor() {
 
    _clickHandler() {
      this.props.dispatch(joinLobbiesRoom(this.props.selection));
-    
+    this.setState({showFeedback: false})
   }
   render() {
+    
 
     let feedback = this.props.feedback.map((feedback, index) => {
+      
       return (
         <div className='feedback'  key={index}>
         <p>{feedback}</p>
@@ -58,7 +61,7 @@ constructor() {
       }
       return (
         <div className= 'user-info'  key={index}>
-          <h3>{user[0].user.name}</h3>
+          <h3>Pending: {user[0].user.name}</h3>
          <button className='accept-btn' onClick={() => this.acceptedHandler(this.props.signerUpInfo[index][0].user.name, this.props.signerUpInfo[index][0].user.roomNumber)}>Accept</button>
          <button className='decline-btn' onClick={() => this.declinedHandler(this.props.signerUpInfo[index][1])}>Decline</button>
         </div>
@@ -78,7 +81,6 @@ constructor() {
     return (
     <div className="ChatRoom" >
         <Message />
-        <h3>PENDING</h3>
         {signerUppers}
         <h3>ACCEPTED</h3>
         {acceptedUsers}

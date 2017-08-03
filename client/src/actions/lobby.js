@@ -46,6 +46,12 @@ export const storeFeedback = (feedback) => ({
   feedback
 });
 
+export const STORE_ROOM = 'STORE_ROOM';
+export const storeRoom = (room) => ({
+  type: STORE_ROOM,
+  room
+});
+
 export const GET_LOBBIES_REQUEST = 'GET_LOBBIES_REQUEST';
 export const getLobbiesRequest = () => ({
   type: GET_LOBBIES_REQUEST

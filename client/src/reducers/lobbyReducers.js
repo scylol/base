@@ -1,8 +1,8 @@
 
 import { RENDER_GROUP, GET_LOBBIES_REQUEST, GET_LOBBIES_SUCCESS, GET_LOBBIES_ERROR, RENDER_USER, STORE_ACCEPTED_USER, STORE_FEEDBACK,  CHAT_ROOM,
-  RENDER_CHAT  } from '../actions/lobby';
+  RENDER_CHAT, STORE_ROOM  } from '../actions/lobby';
 
-
+import {FETCH_USER_SUCCESS} from '../actions/actions';
 
 const initialState = {
   socketLobbies: [],
@@ -12,12 +12,18 @@ const initialState = {
   userInfo: [],
   acceptedUsers: [], 
   feedback: [],
-  message: []
+  message: [],
+  room: ''
 
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case FETCH_USER_SUCCESS:
+     return {
+        ...state, 
+        room: action.user.googleId
+      }
     case RENDER_GROUP:
       return {
         ...state,
@@ -45,6 +51,11 @@ export default function(state = initialState, action) {
         message: [...state.message, {...action.message}]
 
       }
+      case STORE_ROOM: 
+      return {
+        ...state, 
+        room: action.room
+      }
       case GET_LOBBIES_REQUEST:
       return {...state, loading: true, error: null};
 
@@ -52,7 +63,7 @@ export default function(state = initialState, action) {
       return { ...state, loading: false, error: action.error };
 
       case GET_LOBBIES_SUCCESS:
-      return {...state, databaseLobbies: action.lobbies}
+      return {...state, databaseLobbies: action.lobbies, feedback: []}
 
     default:
       return state;

@@ -7,11 +7,16 @@ class Message extends Component {
   sendChat = event => {
     event.preventDefault();
     let message = this.input.value;
-    this.props.dispatch(chatRoom(message));
+    let data = {
+      message: message,
+      name: this.props.currentUser.name,
+      room: this.props.room
+    }
+    this.props.dispatch(chatRoom(data));
   };
 
   showMessages() {
-    return this.props.message.map((message, index) => <li key={index}>{message.message}</li>);
+    return this.props.message.map((message, index) => <li key={index}>{message.message.name}: {message.message.message}</li>);
   }
 
   render() {
@@ -33,7 +38,9 @@ class Message extends Component {
 
 const mapStateToProps = (state) => {
  return {
-   message: state.lobbyReducers.message
+   message: state.lobbyReducers.message,
+   room: state.lobbyReducers.room,
+   currentUser: state.reducer.currentUser
  }
 }
 
