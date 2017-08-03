@@ -34,7 +34,7 @@ class Lobby extends Component {
           <p>Voice Required: {lobby.lobby.voice}</p>
           <p>Start Time: {lobby.lobby.startTime}</p>
           <p> Ideal Party Size: {lobby.lobby.partySize}</p>
-          <Link to={'/'}>
+          <Link to={'/chatroom'}>
           <button id={lobby.lobby.roomNumber} onClick={event => this._clickHandler(event)}>Sign Up</button>
           </Link>
         </div>
@@ -49,7 +49,7 @@ class Lobby extends Component {
           <p>Voice Required: {lobby.voice}</p>
           <p>Start Time: {lobby.startTime}</p>
           <p> Ideal Party Size: {lobby.partySize}</p>
-          <Link to={'/'}>
+          <Link to={'/chatroom'}>
           <button id={lobby.roomNumber} onClick={event => this._clickHandler(event)}>Sign Up</button>
           </Link>
         </div>

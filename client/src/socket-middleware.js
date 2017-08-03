@@ -67,7 +67,7 @@ export function socketMiddleware(store) {
 
     if(socket && action.type === CHAT_ROOM) {
       socket.emit('chat-room', {
-      message: action.message
+        message: action.message
       });
     }
 

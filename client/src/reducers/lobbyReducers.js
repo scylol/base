@@ -10,11 +10,8 @@ const initialState = {
   loading: null,
   error: null,
   userInfo: [],
-
   acceptedUsers: [], 
-  feedback: []
-
-
+  feedback: [],
   message: []
 
 };

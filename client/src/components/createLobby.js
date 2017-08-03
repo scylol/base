@@ -157,7 +157,7 @@ export class CreateLobby extends React.Component {
                 onChange={event => this.handleChange(event)}
               />
             </div>
-            <Link to={'/lobby'} onClick={this.closeModal}>
+            <Link to={'/chatroom'} onClick={this.closeModal}>
               <input
                 className="create-lobby-button"
                 type="submit"
