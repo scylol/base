@@ -8,7 +8,7 @@ const socket = require("socket.io");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const BearerStrategy = require("passport-http-bearer").Strategy;
 const mongoose = require("mongoose");
-// const cors = require("cors");
+const cors = require("cors");
 
 require("dotenv").config();
 mongoose.Promise = global.Promise;
@@ -18,7 +18,9 @@ const { User, Lobby } = require("./models");
 
 // console.log('********', DATABASE_URL);
 // console.log('-------->', PORT);
-
+if(path.extname(filename) == '.js'){
+      res.setHeader('content-type', 'application/javascript');
+    }
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
   CLIENT_SECRET: process.env.CLIENT_SECRET
