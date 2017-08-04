@@ -128,12 +128,12 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  slider1: state.slider1,
-  slider2: state.slider2,
-  slider3: state.slider3,
-  slider4: state.slider4,
-  slider5: state.slider5,
-  slider6: state.slider6,
+  slider1: state.reducer.slider1,
+  slider2: state.reducer.slider2,
+  slider3: state.reducer.slider3,
+  slider4: state.reducer.slider4,
+  slider5: state.reducer.slider5,
+  slider6: state.reducer.slider6,
 });
 
 export default connect(mapStateToProps)(ProfilePage);

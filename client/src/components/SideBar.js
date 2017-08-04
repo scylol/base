@@ -39,8 +39,12 @@ class SideBar extends Component {
           <h1>Base</h1>
         </Link>
         <CreateLobby />
+        <Link to={'/profile'} className="profile-info">
+          <h2>My Profile</h2>
+        </Link>
         
         <div className="profile-container">
+        
           <img src={this.props.profileImage} alt="" />
           <p>
             {this.props.name}

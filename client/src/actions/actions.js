@@ -99,7 +99,7 @@ export const fetchUser = accessToken => dispatch => {
 export const updateUserProfile = (accessToken) => (dispatch, getState) => {
   const state = getState();
 
-  fetch(`/api/users/${state.currentUser.googleId.toString()}`, {
+  fetch(`/api/users/${state.reducer.currentUser.googleId.toString()}`, {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${accessToken}`,
@@ -107,12 +107,12 @@ export const updateUserProfile = (accessToken) => (dispatch, getState) => {
       'Accept': 'application/json'
     },
     body: JSON.stringify({
-      'slider1': state.slider1,
-      'slider2': state.slider2,
-      'slider3': state.slider3,
-      'slider4': state.slider4,
-      'slider5': state.slider5,
-      'slider6': state.slider6
+      'slider1': state.reducer.slider1,
+      'slider2': state.reducer.slider2,
+      'slider3': state.reducer.slider3,
+      'slider4': state.reducer.slider4,
+      'slider5': state.reducer.slider5,
+      'slider6': state.reducer.slider6
     })
   }).then(res => {
     console.log(res);
