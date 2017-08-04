@@ -14,11 +14,13 @@ require("dotenv").config();
 const { DATABASE_URL, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
+console.log('********', DATABASE_URL, PORT);
+
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
   CLIENT_SECRET: process.env.CLIENT_SECRET
 };
-//
+
 if (process.env.NODE_ENV != "production") {
   secret = require("./secret");
 }
