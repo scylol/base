@@ -135,7 +135,7 @@ passport.use(
             }
           );
         }
-      });
+      }).catch(err => console.log(err));
     }
   )
 );
@@ -283,7 +283,7 @@ function runServer(databaseUrl = DATABASE_URL, port = 3001) {
         })
 
       });
-    });
+    }).catch(err => console.log(err));
   });
 }
 
