@@ -14,7 +14,8 @@ const cors = require("cors");
 const { DATABASE_URL, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
-console.log('********', DATABASE_URL, PORT);
+console.log('********', DATABASE_URL);
+console.log('-------->', PORT);
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
