@@ -14,10 +14,10 @@ const cors = require("cors");
 const { DATABASE_URL, PORT, secret } = require('./config/keys');
 const { User, Lobby } = require("./models");
 
-// let secret = {
-//   CLIENT_ID: process.env.CLIENT_ID,
-//   CLIENT_SECRET: process.env.CLIENT_SECRET
-// };
+let secret = {
+  CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
+};
 
 // if (process.env.NODE_ENV != "production") {
 //   secret = require("./secret");
