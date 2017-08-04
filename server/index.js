@@ -10,18 +10,18 @@ const BearerStrategy = require("passport-http-bearer").Strategy;
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-require("dotenv").config();
-const { DATABASE_URL, PORT } = process.env;
+// require("dotenv").config();
+const { DATABASE_URL, PORT, secret } = require('./config/keys');
 const { User, Lobby } = require("./models");
 
-let secret = {
-  CLIENT_ID: process.env.CLIENT_ID,
-  CLIENT_SECRET: process.env.CLIENT_SECRET
-};
+// let secret = {
+//   CLIENT_ID: process.env.CLIENT_ID,
+//   CLIENT_SECRET: process.env.CLIENT_SECRET
+// };
 
-if (process.env.NODE_ENV != "production") {
-  secret = require("./secret");
-}
+// if (process.env.NODE_ENV != "production") {
+//   secret = require("./secret");
+// }
 
 const app = express();
 
@@ -171,23 +171,23 @@ app.get("/api/auth/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/public/index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../client/public/index.html"));
+// });
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
 
-app.get(/^(?!\/api(\/|$))/, (req, res) => {
-  const index = path.resolve(__dirname, "../client/build", "index.html");
-  res.sendFile(index);
-});
+// app.get(/^(?!\/api(\/|$))/, (req, res) => {
+//   const index = path.resolve(__dirname, "../client/build", "index.html");
+//   res.sendFile(index);
+// });
 
 let server;
 
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+function runServer(DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
+    mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
@@ -221,7 +221,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           const myRoom = roomNumber+'abc';
           socket.join(myRoom);
           socket.join(roomNumber);
-         
+
           console.log("creator joined", myRoom);
           const room = platform + region + game;
           room.toLowerCase().replace(/\s+/g, "");
@@ -248,7 +248,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
           const data = [user, socket.id]
           console.log('data array',data)
-          
+
           socket.to(room+'abc').emit("sign-up", data);
         });
 
@@ -275,7 +275,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           console.log(room)
           io.in(room).emit('chat-room', message);
           //  socket.to(creatorRoom).emit('chat-room', message);
-          
+
         })
 
       });
