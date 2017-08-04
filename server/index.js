@@ -8,7 +8,7 @@ const socket = require("socket.io");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const BearerStrategy = require("passport-http-bearer").Strategy;
 const mongoose = require("mongoose");
-// const cors = require("cors");
+const cors = require("cors");
 
 require("dotenv").config();
 mongoose.Promise = global.Promise;
