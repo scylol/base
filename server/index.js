@@ -10,18 +10,18 @@ const BearerStrategy = require("passport-http-bearer").Strategy;
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-// require("dotenv").config();
-const { DATABASE_URL, PORT, CLIENT_ID, CLIENT_SECRET } = require('./config/keys');
+require("dotenv").config();
+const { DATABASE_URL, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
-// let secret = {
-//   CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-//   CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
-// };
+let secret = {
+  CLIENT_ID: process.env.CLIENT_ID,
+  CLIENT_SECRET: process.env.CLIENT_SECRET
+};
 
-// if (process.env.NODE_ENV != "production") {
-//   secret = require("./secret");
-// }
+if (process.env.NODE_ENV != "production") {
+  secret = require("./secret");
+}
 
 const app = express();
 
@@ -104,8 +104,8 @@ app.get("/api/lobbies/:platform/:region/:game", (req, res) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
+      clientID: secret.CLIENT_ID,
+      clientSecret: secret.CLIENT_SECRET,
       callbackURL: "/api/auth/google/callback"
     },
     (accessToken, refreshToken, profile, cb) => {
@@ -171,29 +171,29 @@ app.get("/api/auth/logout", (req, res) => {
   res.redirect("/");
 });
 
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/public/index.html"));
-// });
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/public/index.html"));
+});
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
 
-// app.get(/^(?!\/api(\/|$))/, (req, res) => {
-//   const index = path.resolve(__dirname, "../client/build", "index.html");
-//   res.sendFile(index);
-// });
+app.get(/^(?!\/api(\/|$))/, (req, res) => {
+  const index = path.resolve(__dirname, "../client/build", "index.html");
+  res.sendFile(index);
+});
 
 let server;
 
-function runServer(DATABASE_URL, PORT) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
       server = app
-        .listen(PORT, () => {
-          console.log(`Your app is listening on port ${PORT}`);
+        .listen(port, () => {
+          console.log(`Your app is listening on port ${port}`);
           resolve();
         })
         .on("error", err => {
