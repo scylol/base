@@ -1,6 +1,7 @@
 
 *
   transition: ease-in-out .2s
+  overflow-x: hidden
 =desktop()
   @media screen and (min-width: 990px)
     @content
@@ -23,6 +24,13 @@ $green: #1abc9c
 $tan: #e0ddd7
 $cyan: #21ADE4
 $gray: #414042
+$discord: #28303f
+$red: #eb2b44
+$purple: #7289da
+$dark: #1b212c
+
+
+
 
 
 // Styling Classes
@@ -80,9 +88,6 @@ body
   #root
     width: 100%
     padding-left: 275px
-  .logout, button
-    &:hover
-      transform: translate(-2px, -2px)
   button
     width: 150px
     margin-top: 25px
@@ -93,3 +98,4 @@ body
     color: white
     font-weight: bold
     cursor: pointer
+    outline: none

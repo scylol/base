@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Icon from './Icon';
-// import Title from './Title';
 import Lobby from './Lobby';
-// import Required from './Required';
 
 
 class Room extends Component {
@@ -16,7 +13,7 @@ class Room extends Component {
     
     return (
       <div className="lobby" >
-        <h3>{platform} - {region} - {game}</h3>
+        <h3>Select A Lobby</h3>
           <Lobby />
       </div>
     ); 

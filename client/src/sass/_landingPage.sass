@@ -1,10 +1,26 @@
 .landing-page
-
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   height: 100vh
+  video
+    z-index: 1
+    position: absolute
+    height: 100%
+    top: 0
+  .overlay
+    height: 100%
+    width: 100%
+    background-color: rgba(black, .8)
+    position: fixed
+    z-index: 10
+  .copy 
+    z-index: 50
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
   h2
     font-size: 56px
     margin: 0

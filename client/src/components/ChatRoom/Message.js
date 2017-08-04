@@ -33,7 +33,7 @@ class Message extends Component {
 
   render() {
     return (
-      <div>
+      <div className="message-container">
       <ul>{this.showMessages()}</ul>
         <form onSubmit={e => this.sendChat(e)}>
           <input

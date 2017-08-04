@@ -79,11 +79,13 @@ constructor() {
 
 
     return (
-    <div className="ChatRoom" >
+    <div className="chatRoom" >
         <Message />
         {signerUppers}
+        <div className="party-container">
         <h3>Party Members</h3>
         {acceptedUsers}
+        </div>
         {feedback}
       </div>
     );
