@@ -11,13 +11,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // require("dotenv").config();
-const { DATABASE_URL, PORT, secret } = require('./config/keys');
+const { DATABASE_URL, PORT, CLIENT_ID, CLIENT_SECRET } = require('./config/keys');
 const { User, Lobby } = require("./models");
 
-let secret = {
-  CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-  CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
-};
+// let secret = {
+//   CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+//   CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
+// };
 
 // if (process.env.NODE_ENV != "production") {
 //   secret = require("./secret");
@@ -104,8 +104,8 @@ app.get("/api/lobbies/:platform/:region/:game", (req, res) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: secret.CLIENT_ID,
-      clientSecret: secret.CLIENT_SECRET,
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
       callbackURL: "/api/auth/google/callback"
     },
     (accessToken, refreshToken, profile, cb) => {
@@ -185,15 +185,15 @@ app.get("/api/auth/logout", (req, res) => {
 
 let server;
 
-function runServer(DATABASE_URL, port = PORT) {
+function runServer(DATABASE_URL, PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
       server = app
-        .listen(port, () => {
-          console.log(`Your app is listening on port ${port}`);
+        .listen(PORT, () => {
+          console.log(`Your app is listening on port ${PORT}`);
           resolve();
         })
         .on("error", err => {
