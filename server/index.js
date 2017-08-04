@@ -11,6 +11,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // require("dotenv").config();
+mongoose.Promise = global.Promise;
+
 const { DATABASE_URL, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
