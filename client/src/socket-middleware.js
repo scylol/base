@@ -8,7 +8,7 @@ import {renderGroup, renderUser, storeAcceptedUser, storeFeedback, renderChat} f
 let socket;
 
 export function socketConnect(store){
-  socket = io.connect('http://localhost:3001');
+  socket = io.connect('/');
   socket.on('create-group', (data) => {
     store.dispatch(renderGroup(data));
   });
