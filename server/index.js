@@ -18,7 +18,7 @@ let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
   CLIENT_SECRET: process.env.CLIENT_SECRET
 };
-
+//
 if (process.env.NODE_ENV != "production") {
   secret = require("./secret");
 }
