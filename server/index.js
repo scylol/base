@@ -10,14 +10,14 @@ const BearerStrategy = require("passport-http-bearer").Strategy;
 const mongoose = require("mongoose");
 // const cors = require("cors");
 
-// require("dotenv").config();
+require("dotenv").config();
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
-console.log('********', DATABASE_URL);
-console.log('-------->', PORT);
+// console.log('********', DATABASE_URL);
+// console.log('-------->', PORT);
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
@@ -176,21 +176,27 @@ app.get("/api/auth/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/public/index.html"));
-});
+app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname + 'client', 'build', 'index.html'));
+  });
+
+//ORIGINAL
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../client/public/index.html"));
+// });
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
 
-app.get(/^(?!\/api(\/|$))/, (req, res) => {
-  const index = path.resolve(__dirname, "../client/build", "index.html");
-  res.sendFile(index);
-});
+// app.get(/^(?!\/api(\/|$))/, (req, res) => {
+//   const index = path.resolve(__dirname, "../client/build", "index.html");
+//   res.sendFile(index);
+// });
 
 let server;
 
-function runServer(databaseUrl = DATABASE_URL, port = 3001) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   console.log('This is the hard coded port:', port);
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
