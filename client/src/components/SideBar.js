@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUser, logoutUser, joinLobbiesRoom } from '../actions/actions';
 import * as Cookies from 'js-cookie';
-import CreateLobby from './createLobby';
-// import {userAccepted, userDeclined} from '../actions/lobby';
+
+
 
 
 class SideBar extends Component {
@@ -38,7 +38,6 @@ class SideBar extends Component {
         <Link to={'/'} className="main-text">
           <h1>Base</h1>
         </Link>
-        <CreateLobby />
         <Link to={'/profile'} className="profile-info">
           <h2>My Profile</h2>
         </Link>

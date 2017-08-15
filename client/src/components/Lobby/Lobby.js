@@ -35,7 +35,7 @@ class Lobby extends Component {
             {lobby.lobby.description}
           </p>
           <p>
-            <FontAwesome name="rocket" /> {lobby.lobby.voice}
+            Voice Required: <FontAwesome name="rocket" /> {lobby.lobby.voice}
           </p>
           <p>
             Start Time: {lobby.lobby.startTime}

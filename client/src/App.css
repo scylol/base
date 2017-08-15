@@ -76,6 +76,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh; }
+  .landing-page .button-div {
+    display: flex;
+    align-items: center; }
+  .landing-page .find-button {
+    padding: 25px; }
+  .landing-page p {
+    padding: 25px;
+    font-size: 36px; }
   .landing-page video {
     z-index: 1;
     position: absolute;
@@ -153,11 +161,10 @@
 .lobby-container {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  padding-top: 100px; }
+  padding-top: 100px;
+  flex-direction: column; }
   .lobby-container .title {
     font-size: 56px;
     display: flex;
@@ -176,16 +183,11 @@
   .lobby-container .room {
     display: flex;
     background-color: #28303f;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    width: 350px;
-    height: 400px;
+    width: 100%;
     margin: 25px;
     border-bottom: 5px solid #1b212c; }
-    .lobby-container .room h3, .lobby-container .room p {
-      width: 100%; }
     .lobby-container .room h3 {
       margin-bottom: auto;
       justify-content: center;
@@ -194,10 +196,11 @@
       background-color: #1b212c;
       margin-top: 0;
       min-height: 75px;
-      border-bottom: 5px solid #eb2b44; }
+      border-bottom: 5px solid #eb2b44;
+      width: 300px; }
     .lobby-container .room button {
       margin-top: 0;
-      margin-bottom: 25px; }
+      margin-right: 25px; }
 
 .chatRoom {
   display: flex;
@@ -310,7 +313,6 @@ body {
     padding-left: 275px; }
   body button {
     width: 150px;
-    margin-top: 25px;
     background-color: #eb2b44;
     border: none;
     padding: 15px;

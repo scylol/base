@@ -1,11 +1,10 @@
 .lobby-container
   width: 100%
   display: flex
-  flex-wrap: wrap
   align-items: center
   justify-content: center
-  height: 100vh
   padding-top: 100px
+  flex-direction: column
   .title
     font-size: 56px
     display: flex
@@ -24,17 +23,12 @@
   .room
     display: flex
     background-color: $discord
-    flex-direction: column
-    justify-content: center
+    justify-content: space-between
     align-items: center
-    text-align: center
-    width: 350px
-    height: 400px
+    width: 100%
     margin: 25px
     border-bottom: 5px solid #1b212c
 
-    h3,p
-      width: 100%
     h3
       margin-bottom: auto
       justify-content: center
@@ -44,8 +38,9 @@
       margin-top: 0
       min-height: 75px
       border-bottom: 5px solid $red
+      width: 300px
     
 
     button
       margin-top: 0
-      margin-bottom: 25px
+      margin-right: 25px

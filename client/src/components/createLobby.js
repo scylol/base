@@ -67,7 +67,7 @@ export class CreateLobby extends React.Component {
     return (
       <div className="modal-div">
         <button className="create-lobby-button" onClick={this.openModal}>
-          Create Lobby
+          Create a Group
         </button>
         <Modal
           className="modal"
