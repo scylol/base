@@ -75,7 +75,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; }
+  height: 100vh;
+  background-image: url("images/base-image.png"); }
   .landing-page .button-div {
     display: flex;
     align-items: center; }
@@ -120,11 +121,16 @@
   .select-platform h2 {
     font-size: 56px;
     margin: 0;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    overflow: hidden; }
   .select-platform .platforms-container {
     display: flex;
     width: 80%; }
-    .select-platform .platforms-container .platform {
+  .select-platform .link-div-games {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap; }
+    .select-platform .link-div-games .platform {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -136,9 +142,9 @@
       width: 25%;
       margin: 25px 25px;
       cursor: pointer; }
-      .select-platform .platforms-container .platform:hover {
+      .select-platform .link-div-games .platform:hover {
         background-color: rgba(255, 255, 255, 0.2); }
-      .select-platform .platforms-container .platform p {
+      .select-platform .link-div-games .platform p {
         font-weight: bold;
         font-size: 24px;
         height: 50px;
@@ -149,8 +155,45 @@
         margin-top: 0;
         display: flex;
         justify-content: center;
-        align-items: center; }
-      .select-platform .platforms-container .platform img {
+        align-items: center;
+        text-align: center;
+        overflow: hidden; }
+      .select-platform .link-div-games .platform img {
+        width: 75px;
+        margin-top: 25px;
+        margin-bottom: auto; }
+  .select-platform .link-div {
+    display: flex;
+    width: 100%; }
+    .select-platform .link-div .platform {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #28303f;
+      border-bottom: 8px solid #1b212c;
+      border-radius: 3px;
+      height: 300px;
+      width: 25%;
+      margin: 25px 25px;
+      cursor: pointer; }
+      .select-platform .link-div .platform:hover {
+        background-color: rgba(255, 255, 255, 0.2); }
+      .select-platform .link-div .platform p {
+        font-weight: bold;
+        font-size: 24px;
+        height: 50px;
+        border-bottom: 4px solid #eb2b44;
+        margin-bottom: auto;
+        background-color: #1b212c;
+        width: 100%;
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden; }
+      .select-platform .link-div .platform img {
         width: 75px;
         margin-top: 25px;
         margin-bottom: auto; }

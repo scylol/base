@@ -71,6 +71,7 @@ export class CreateLobby extends React.Component {
         </button>
         <Modal
           className="modal"
+          overlayClassName='modal-overlay'
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
@@ -84,14 +85,16 @@ export class CreateLobby extends React.Component {
           <form className="create-lobby">
             <div className="dropdown-section">
               Game:<select
+                required
                 className="user-selections game"
                 onChange={event => this.handleChange(event)}
+                
               >
-                <option />
-                <option>Dota 2</option>
-                <option>League of Legends</option>
-                <option>Overwatch</option>
-                <option>Diablo 3</option>
+                <option value=''> </option>
+                <option value='Dota 2'>Dota 2</option>
+                <option value='League of Legends'>League of Legends</option>
+                <option value='Overwatch'>Overwatch</option>
+                <option value='Diablo 3'>Diablo 3</option>
               </select>
               Region:<select
                 className="user-selections region"
@@ -129,6 +132,7 @@ export class CreateLobby extends React.Component {
                 type="text"
                 maxLength="35"
                 onChange={event => this.handleChange(event)}
+                required
               />
               Start Time:{' '}
               <input
@@ -162,7 +166,7 @@ export class CreateLobby extends React.Component {
               <input
                 className="create-lobby-button"
                 type="submit"
-                value="Create Lobby"
+                // value="Create Lobby"
                 onClick={this._clickHandler.bind(this)}
               />
             </Link>

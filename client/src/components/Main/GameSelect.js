@@ -30,13 +30,13 @@ class GameSelect extends Component {
     });
     return (
       <div className="select-platform">
-        <h2>Select Your Game</h2>
-        <div className="platforms-container">
-          {gameRender}
-        </div>
-        <Link to={'/lobby'}>
-          <button onClick={this._clickHandler}>Find Lobby</button>
-        </Link>
+          <h2>Select Your Game</h2>
+          <div className="platforms-container" onClick={this._clickHandler}>
+          <Link className='link-div-games' to={"/lobby"}>
+            {gameRender}
+            </Link>
+          </div>
+        
       </div>
     );
   }

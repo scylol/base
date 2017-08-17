@@ -8,9 +8,14 @@
     font-size: 56px
     margin: 0
     margin-bottom: 25px
+    overflow: hidden
   .platforms-container
     display: flex
     width: 80%
+  .link-div-games 
+    display: flex
+    width: 100% 
+    flex-wrap: wrap
     .platform
       display: flex
       flex-direction: column
@@ -37,7 +42,48 @@
         margin-top: 0
         display: flex
         justify-content: center 
-        align-items: center 
+        align-items: center
+        text-align: center
+        overflow: hidden
+
+
+      img
+        width: 75px
+        margin-top: 25px
+        margin-bottom: auto  
+  .link-div
+    display: flex
+    width: 100%
+    
+    .platform
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      background-color: $discord
+      border-bottom: 8px solid #1b212c
+
+      border-radius: 3px
+      height: 300px
+      width: 25%
+      margin: 25px 25px
+      cursor: pointer
+      &:hover
+        background-color: rgba(white, .2)
+      p
+        font-weight: bold
+        font-size: 24px
+        height: 50px
+        border-bottom: 4px solid $red
+        margin-bottom: auto
+        background-color: #1b212c
+        width: 100%
+        margin-top: 0
+        display: flex
+        justify-content: center 
+        align-items: center
+        text-align: center
+        overflow: hidden
 
 
       img

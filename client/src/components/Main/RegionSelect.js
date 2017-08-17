@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { updateRegionSelection } from '../../actions/actions';
-import regions from '../../utils/regions';
-import Selector from './Selector';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { updateRegionSelection } from "../../actions/actions";
+import regions from "../../utils/regions";
+import Selector from "./Selector";
 
 class RegionSelect extends Component {
   render() {
@@ -13,7 +13,10 @@ class RegionSelect extends Component {
           key={region.title}
           title={region.title}
           image={region.image}
-          onClick={p => this.props.dispatch(updateRegionSelection(p.toLowerCase().replace(/\s+/g, '')))}
+          onClick={p =>
+            this.props.dispatch(
+              updateRegionSelection(p.toLowerCase().replace(/\s+/g, ""))
+            )}
         />
       );
     });
@@ -21,11 +24,10 @@ class RegionSelect extends Component {
       <div className="select-platform">
         <h2>Select Your Region</h2>
         <div className="platforms-container">
-          {regionRender}
+          <Link className="link-div" to={"/games"}>
+            {regionRender}
+          </Link>
         </div>
-        <Link to={'/games'}>
-          <button>Next</button>
-        </Link>
       </div>
     );
   }
