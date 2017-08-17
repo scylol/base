@@ -13,7 +13,7 @@ const cors = require("cors");
 require("dotenv").config();
 mongoose.Promise = global.Promise;
 
-const { DATABASE_URL, PORT } = process.env;
+const { MONGODB_URI, PORT } = process.env;
 const { User, Lobby } = require("./models");
 
 // console.log('********', DATABASE_URL);
@@ -198,7 +198,8 @@ app.use(express.static('client/build'));
 
 let server;
 
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+function runServer(databaseUrl = MONGODB_URI, port = PORT) {
+  console.log('This is the db URL', databaseUrl);
   console.log('This is the hard coded port:', port);
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
