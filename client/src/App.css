@@ -125,11 +125,12 @@
     overflow: hidden; }
   .select-platform .platforms-container {
     display: flex;
-    width: 80%; }
+    width: 100%; }
   .select-platform .link-div-games {
     display: flex;
     width: 100%;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    justify-content: center; }
     .select-platform .link-div-games .platform {
       display: flex;
       flex-direction: column;

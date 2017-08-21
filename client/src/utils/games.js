@@ -30,7 +30,7 @@ const games = [
   ,
   {
     title: 'Heroes of the Storm',
-    image: 'http://wiki.teamliquid.net/commons/images/thumb/4/4b/Hots_logo.png/170px-Hots_logo.png'
+    image: 'https://blznav.akamaized.net/img/games/logo-heroes-78cae505b7a524fb.png'
   }
   ,
   {
