@@ -326,7 +326,8 @@
       background-color: rgba(0, 0, 0, 0.4);
       color: white;
       font-weight: bold;
-      font-size: 22px; }
+      font-size: 22px;
+      margin-bottom: 30px; }
 
 body {
   font-family: 'Montserrat', sans-serif;

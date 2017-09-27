@@ -37,7 +37,7 @@ class Message extends Component {
       <ul>{this.showMessages()}</ul>
         <form onSubmit={e => this.sendChat(e)}>
           <input
-          value={this.state.value}
+           value={this.state.value}
             type="text"
             placeholder="Enter message..."
             onChange={this.handleChange}
